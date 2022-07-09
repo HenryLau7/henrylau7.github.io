@@ -13,4 +13,4 @@ profile_picture:
   My research interests are mainly about machine learning, computer vision.
 </p>
 
-**Address**: School of Data Science, Fudan University, 220 Handan Rd., Yangpu Dist., Shanghai, China, 200000
+**Address**: School of Data Science, Fudan University, 220 Handan Rd., Yangpu Dist., Shanghai, China, 200000.
