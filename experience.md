@@ -10,7 +10,7 @@ slug: /experience
 <br><a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. 
 
 ## ACTIVITY
-* *Apr,2022 - Present*, **committee member**
+* *Apr. 2022 - Present*, **committee member**
 <br> Communist Youth League of School of Data Science, Fudan University
 * *Aug. 2020 - Present*, **Excute President**
 <br>Student Union of School of Data Science, Fudan University.
