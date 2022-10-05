@@ -15,7 +15,7 @@ header:
       slug: /
     - name: Experience
     - name: Presentation
-    - name: Publication
+    # - name: Publication
     - name: Blog
 
 footer:
