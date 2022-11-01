@@ -40,6 +40,8 @@ footer:
     # - name: RSS
     #   link: /feed.xml
   link:
+    - name: Xiahai
+      link: https://zmiclab.github.io/zxh/
     - name: Zhiyang
       link: https://name-less-king.github.io/
     - name: Lesi
