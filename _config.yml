@@ -13,7 +13,7 @@ header:
     - name: About
       slug: /
     - name: Experience
-    - name: Presentation
+    - name: Publication
     - name: Blog
 
 footer:
