@@ -27,22 +27,22 @@
       
 
   <!-- Primary Meta Tags -->
-  <title>Yuanye Liu | Student t distribution and Student-t Mixture Model</title>
-  <meta name="title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
+  <title>Yuanye Liu | First Post</title>
+  <meta name="title" content="Yuanye Liu | First Post"/>
   <meta name="description" content="Student t distribution and Student-t Mixture Model"/>
 
   <!-- Open Graph / Facebook -->
-  <meta property="og:site_name" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
+  <meta property="og:site_name" content="Yuanye Liu | First Post"/>
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="http://localhost:4000/2022/11/07/student-t-distribution"/>
-  <meta property="og:title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
+  <meta property="og:title" content="Yuanye Liu | First Post"/>
   <meta property="og:description" content="Student t distribution and Student-t Mixture Model"/>
   <meta property="og:image" content="http://localhost:4000"/>
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image"/>
   <meta property="twitter:url" content="http://localhost:4000/2022/11/07/student-t-distribution"/>
-  <meta property="twitter:title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
+  <meta property="twitter:title" content="Yuanye Liu | First Post"/>
   <meta property="twitter:description" content="Student t distribution and Student-t Mixture Model"/>
   <meta property="twitter:image" content="http://localhost:4000"/>
   
@@ -118,7 +118,7 @@
 
             <h1 class="post-title">
             
-              Student t distribution and Student-t Mixture Model
+              First Post
             
             </h1>
 
@@ -128,7 +128,7 @@
           </header>
 
           <article class="post-content">
-            <h2 id="introducion">Introducion</h2>
+            <h4 id="introducion">Introducion</h4>
 
 <p>Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.</p>
 
@@ -136,9 +136,9 @@
 
 <p>When the degree of freedom goes to infinity, the student-t distribution is a Gaussian. The parameter $\nu$ reflects the robustness of the distribution.</p>
 
-<h2 id="generation-of-student-t-distribution">Generation of Student-t distribution</h2>
+<h4 id="generation-of-student-t-distribution">Generation of Student-t distribution</h4>
 
-<h3 id="for-the-unitary-situation">For the unitary situation</h3>
+<h5 id="for-the-unitary-situation">For the unitary situation</h5>
 
 <p>Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
 \(f_Y(y)=\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}\)
@@ -148,7 +148,7 @@ where $\Gamma(z)$ is the Gamma function, which is,
 <p>And we have a standard distribution, $Z\sim N(0,1)$, then we can construct a student-t distribution,
 \(X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}\)</p>
 
-<h3 id="for-the-multivariate-student-t">For the multivariate student-t</h3>
+<h5 id="for-the-multivariate-student-t">For the multivariate student-t</h5>
 
 <p>Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.</p>
 
@@ -168,7 +168,7 @@ where $\Gamma(\alpha)$ is the Gamma function.</p>
 
 <p>So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.</p>
 
-<h2 id="sampling">Sampling</h2>
+<h4 id="sampling">Sampling</h4>
 
 <ul>
   <li>
@@ -193,7 +193,7 @@ where $\Gamma(\alpha)$ is the Gamma function.</p>
   </li>
 </ul>
 
-<h2 id="compute-the-ci-of-mean">Compute the C.I of mean</h2>
+<h4 id="compute-the-ci-of-mean">Compute the C.I of mean</h4>
 
 <p>Owing to the features of student-t, we can use T-test to calculate the confidence interval of $\mu$ with unknown standard variance in Gaussian distribution.
 \(\begin{align*}
@@ -201,7 +201,7 @@ where $\Gamma(\alpha)$ is the Gamma function.</p>
 \frac{\bar x -\mu}{s/\sqrt{n}} &amp;\sim t_{n-1}
 \end{align*}\)</p>
 
-<h2 id="probability-density-functionpdf">Probability Density Function(PDF)</h2>
+<h4 id="probability-density-functionpdf">Probability Density Function(PDF)</h4>
 
 <p>For the unitary situation,  I use the differential method to calculate the density,</p>
 
@@ -245,7 +245,7 @@ f_T(t)
 
 <p>where $\sigma_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$.</p>
 
-<h2 id="mle-of">MLE of</h2>
+<h4 id="mle-of">MLE of</h4>
 
 <p>The likelihood of $(\mu,\Sigma,\nu)$ is
 $$
@@ -269,7 +269,6 @@ l(\mu,\Sigma,\nu|Y,\tau)
 <p>\end{align*}
 $$</p>
 
-<h2 id="mixture-model">Mixture Model</h2>
 <h4 id="notation">Notation</h4>
 
 <p>${x_i}_{i=1}^N$ : the on</p>
@@ -284,7 +283,7 @@ $$</p>
 
 <p>${\nu_k}<em>{k=1}^N$: the degree of freedom of the $k</em>{th}$ component.</p>
 
-<h4 id="mixture-model-1">Mixture model</h4>
+<h3 id="mixture-model">Mixture model</h3>
 
 <p>Complete data vector
 \(x_c=[x_1,\cdots,x_N,z_1,\cdots,z_N,u_1,\cdots,u_N]\)

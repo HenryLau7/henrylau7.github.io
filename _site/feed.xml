@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-11-07T10:30:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">Student t distribution and Student-t Mixture Model</title><link href="http://localhost:4000/2022/11/07/student-t-distribution.html" rel="alternate" type="text/html" title="Student t distribution and Student-t Mixture Model" /><published>2022-11-07T18:20:00+08:00</published><updated>2022-11-07T18:20:00+08:00</updated><id>http://localhost:4000/2022/11/07/student-t-distribution</id><content type="html" xml:base="http://localhost:4000/2022/11/07/student-t-distribution.html">&lt;h2 id=&quot;introducion&quot;&gt;Introducion&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-11-08T00:08:39+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">First Post</title><link href="http://localhost:4000/2022/11/07/student-t-distribution.html" rel="alternate" type="text/html" title="First Post" /><published>2022-11-07T18:20:00+08:00</published><updated>2022-11-07T18:20:00+08:00</updated><id>http://localhost:4000/2022/11/07/student-t-distribution</id><content type="html" xml:base="http://localhost:4000/2022/11/07/student-t-distribution.html">&lt;h4 id=&quot;introducion&quot;&gt;Introducion&lt;/h4&gt;
 
 &lt;p&gt;Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.&lt;/p&gt;
 
@@ -6,9 +6,9 @@
 
 &lt;p&gt;When the degree of freedom goes to infinity, the student-t distribution is a Gaussian. The parameter $\nu$ reflects the robustness of the distribution.&lt;/p&gt;
 
-&lt;h2 id=&quot;generation-of-student-t-distribution&quot;&gt;Generation of Student-t distribution&lt;/h2&gt;
+&lt;h4 id=&quot;generation-of-student-t-distribution&quot;&gt;Generation of Student-t distribution&lt;/h4&gt;
 
-&lt;h3 id=&quot;for-the-unitary-situation&quot;&gt;For the unitary situation&lt;/h3&gt;
+&lt;h5 id=&quot;for-the-unitary-situation&quot;&gt;For the unitary situation&lt;/h5&gt;
 
 &lt;p&gt;Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
 \(f_Y(y)=\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}\)
@@ -18,7 +18,7 @@ where $\Gamma(z)$ is the Gamma function, which is,
 &lt;p&gt;And we have a standard distribution, $Z\sim N(0,1)$, then we can construct a student-t distribution,
 \(X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}\)&lt;/p&gt;
 
-&lt;h3 id=&quot;for-the-multivariate-student-t&quot;&gt;For the multivariate student-t&lt;/h3&gt;
+&lt;h5 id=&quot;for-the-multivariate-student-t&quot;&gt;For the multivariate student-t&lt;/h5&gt;
 
 &lt;p&gt;Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.&lt;/p&gt;
 
@@ -38,7 +38,7 @@ where $\Gamma(\alpha)$ is the Gamma function.&lt;/p&gt;
 
 &lt;p&gt;So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.&lt;/p&gt;
 
-&lt;h2 id=&quot;sampling&quot;&gt;Sampling&lt;/h2&gt;
+&lt;h4 id=&quot;sampling&quot;&gt;Sampling&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -63,7 +63,7 @@ where $\Gamma(\alpha)$ is the Gamma function.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;compute-the-ci-of-mean&quot;&gt;Compute the C.I of mean&lt;/h2&gt;
+&lt;h4 id=&quot;compute-the-ci-of-mean&quot;&gt;Compute the C.I of mean&lt;/h4&gt;
 
 &lt;p&gt;Owing to the features of student-t, we can use T-test to calculate the confidence interval of $\mu$ with unknown standard variance in Gaussian distribution.
 \(\begin{align*}
@@ -71,7 +71,7 @@ where $\Gamma(\alpha)$ is the Gamma function.&lt;/p&gt;
 \frac{\bar x -\mu}{s/\sqrt{n}} &amp;amp;\sim t_{n-1}
 \end{align*}\)&lt;/p&gt;
 
-&lt;h2 id=&quot;probability-density-functionpdf&quot;&gt;Probability Density Function(PDF)&lt;/h2&gt;
+&lt;h4 id=&quot;probability-density-functionpdf&quot;&gt;Probability Density Function(PDF)&lt;/h4&gt;
 
 &lt;p&gt;For the unitary situation,  I use the differential method to calculate the density,&lt;/p&gt;
 
@@ -115,7 +115,7 @@ f_T(t)
 
 &lt;p&gt;where $\sigma_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$.&lt;/p&gt;
 
-&lt;h2 id=&quot;mle-of&quot;&gt;MLE of&lt;/h2&gt;
+&lt;h4 id=&quot;mle-of&quot;&gt;MLE of&lt;/h4&gt;
 
 &lt;p&gt;The likelihood of $(\mu,\Sigma,\nu)$ is
 $$
@@ -139,7 +139,6 @@ l(\mu,\Sigma,\nu|Y,\tau)
 &lt;p&gt;\end{align*}
 $$&lt;/p&gt;
 
-&lt;h2 id=&quot;mixture-model&quot;&gt;Mixture Model&lt;/h2&gt;
 &lt;h4 id=&quot;notation&quot;&gt;Notation&lt;/h4&gt;
 
 &lt;p&gt;${x_i}_{i=1}^N$ : the on&lt;/p&gt;
@@ -154,7 +153,7 @@ $$&lt;/p&gt;
 
 &lt;p&gt;${\nu_k}&lt;em&gt;{k=1}^N$: the degree of freedom of the $k&lt;/em&gt;{th}$ component.&lt;/p&gt;
 
-&lt;h4 id=&quot;mixture-model-1&quot;&gt;Mixture model&lt;/h4&gt;
+&lt;h3 id=&quot;mixture-model&quot;&gt;Mixture model&lt;/h3&gt;
 
 &lt;p&gt;Complete data vector
 \(x_c=[x_1,\cdots,x_N,z_1,\cdots,z_N,u_1,\cdots,u_N]\)
