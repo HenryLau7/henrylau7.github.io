@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "First Post"
+title:  "Student t distribution and Student-t Mixture Model"
 date:   2022-11-07 10:20:00
 blurb: "Student t distribution and Student-t Mixture Model"
 og_image: /assets/img/content/StudentT/gamma_distribution.svg
