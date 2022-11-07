@@ -1,3 +1,336 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-09-22T18:01:03+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">First Post</title><link href="http://localhost:4000/2022/07/10/first-post.html" rel="alternate" type="text/html" title="First Post" /><published>2022-07-10T04:00:40+08:00</published><updated>2022-07-10T04:00:40+08:00</updated><id>http://localhost:4000/2022/07/10/first-post</id><content type="html" xml:base="http://localhost:4000/2022/07/10/first-post.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/content/FirstPost/happy.gif&quot; alt=&quot;bay&quot; class=&quot;post-pic&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-11-07T10:30:55+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">Student t distribution and Student-t Mixture Model</title><link href="http://localhost:4000/2022/11/07/student-t-distribution.html" rel="alternate" type="text/html" title="Student t distribution and Student-t Mixture Model" /><published>2022-11-07T18:20:00+08:00</published><updated>2022-11-07T18:20:00+08:00</updated><id>http://localhost:4000/2022/11/07/student-t-distribution</id><content type="html" xml:base="http://localhost:4000/2022/11/07/student-t-distribution.html">&lt;h2 id=&quot;introducion&quot;&gt;Introducion&lt;/h2&gt;
+
+&lt;p&gt;Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/content/StudentT/Student_t.svg&quot; alt=&quot;bay&quot; class=&quot;post-pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When the degree of freedom goes to infinity, the student-t distribution is a Gaussian. The parameter $\nu$ reflects the robustness of the distribution.&lt;/p&gt;
+
+&lt;h2 id=&quot;generation-of-student-t-distribution&quot;&gt;Generation of Student-t distribution&lt;/h2&gt;
+
+&lt;h3 id=&quot;for-the-unitary-situation&quot;&gt;For the unitary situation&lt;/h3&gt;
+
+&lt;p&gt;Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
+\(f_Y(y)=\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}\)
+where $\Gamma(z)$ is the Gamma function, which is, 
+\(\Gamma(z)=\int_{0}^{\infty} t^{z-1} e^{-t} d t\)&lt;/p&gt;
+
+&lt;p&gt;And we have a standard distribution, $Z\sim N(0,1)$, then we can construct a student-t distribution,
+\(X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}\)&lt;/p&gt;
+
+&lt;h3 id=&quot;for-the-multivariate-student-t&quot;&gt;For the multivariate student-t&lt;/h3&gt;
+
+&lt;p&gt;Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.&lt;/p&gt;
+
+&lt;p&gt;So the multivariate student-t is,
+\(X=\frac{Z}{\sqrt{Y/\nu}}+\mu\sim t_p(\mu,\Sigma,\nu)\)
+And here I want to introduce a perspective to understand $t$ distribution. From the eqution above, we can find out that, $\frac{Z}{\sqrt{Y/\nu}}\sim t_p(0,\Sigma,\nu)$. Meanwhile, if we regard the $u=Y/\nu$ as a constant or say fixed number, it’s just a modification of covariance matrix in a $N(0,\Sigma)$, which is to say, if we fix $u$, we have,
+\(X|u\sim N(\mu,\Sigma/u)\)
+Student $t$ distribution is a gaussian distribution with a &lt;strong&gt;stochastic covariance&lt;/strong&gt; matrix.&lt;/p&gt;
+
+&lt;p&gt;And, the $u=Y/\nu$ is a Gamma distribution, satisfying $u\sim Gamma(\dfrac{\nu}{2},\dfrac{\nu}{2})$. also called scaled chi-square distribution.&lt;/p&gt;
+
+&lt;p&gt;For $x\sim Gamma(\alpha,\beta)$,
+\(f(x ; \alpha, \beta)=\frac{x^{\alpha-1} e^{-\beta x} \beta^{\alpha}}{\Gamma(\alpha)} \quad \text { for } x&amp;gt;0 \quad \alpha, \beta&amp;gt;0\)
+where $\Gamma(\alpha)$ is the Gamma function.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/content/StudentT/gamma_distribution.svg&quot; alt=&quot;bay&quot; class=&quot;post-pic&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.&lt;/p&gt;
+
+&lt;h2 id=&quot;sampling&quot;&gt;Sampling&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$u_i&lt;/td&gt;
+          &lt;td&gt;\nu \overset{iid}{\sim} Gamma(\nu/2,\nu/2)$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;$Y_i&lt;/td&gt;
+          &lt;td&gt;\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)$&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;compute-the-ci-of-mean&quot;&gt;Compute the C.I of mean&lt;/h2&gt;
+
+&lt;p&gt;Owing to the features of student-t, we can use T-test to calculate the confidence interval of $\mu$ with unknown standard variance in Gaussian distribution.
+\(\begin{align*}
+\frac{\bar x -\mu}{\sigma/\sqrt{n}} &amp;amp;\sim N(0,1)\\
+\frac{\bar x -\mu}{s/\sqrt{n}} &amp;amp;\sim t_{n-1}
+\end{align*}\)&lt;/p&gt;
+
+&lt;h2 id=&quot;probability-density-functionpdf&quot;&gt;Probability Density Function(PDF)&lt;/h2&gt;
+
+&lt;p&gt;For the unitary situation,  I use the differential method to calculate the density,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$P(x&amp;lt;X&amp;lt;x+\mathrm d x)=f(x)\mathrm d x$&lt;/li&gt;
+  &lt;li&gt;$P(X=x)=f(x)\mathrm d x$&lt;/li&gt;
+  &lt;li&gt;$\mathrm d x=\sqrt{\dfrac{y}{\nu}}\mathrm d t$&lt;/li&gt;
+&lt;/ul&gt;
+
+\[f_T(t)
+=\dfrac{\Gamma({\frac{\nu+1}{2}})}{\sqrt{\pi\nu}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{n})^{-\frac{\nu+1}{2}}\]
+
+\[\begin{align*}
+f_T(t) \mathrm dt
+&amp;amp;=P(T=t)\\
+&amp;amp;=P(X=t\sqrt{Y/n})\\
+&amp;amp;=f_X(t\sqrt{Y/n}) \mathrm dx\\
+&amp;amp;=\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \mathrm dx\\
+f_T(t)&amp;amp;=\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}\\
+&amp;amp;=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}|Y=y\}\}\\
+&amp;amp;=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\}\}\\
+&amp;amp;=E\{\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\mathrm d y \}\\
+&amp;amp;=\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+&amp;amp;=\int_0^{+\infin}\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+
+&amp;amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}\int_0^{+\infin} y^{\frac{n-1}{2}}\exp\{-(\frac{1}{2}+\frac{t^2}{2n})y\} \mathrm d y\\
+
+ \overset{u=(\frac{1}{2}+\frac{t^2}{2n})y}{\rightarrow}
+ &amp;amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}(\frac{1}{2}(1+\frac{t^2}{n}))^{-\frac{n+1}{2}}\int_0^{+\infin}u^{\frac{n+1}{2}-1}\exp\{-u\}\mathrm d u \\
+ &amp;amp;=\dfrac{\Gamma({\frac{n+1}{2}})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{t^2}{n})^{-\frac{n+1}{2}}
+
+\end{align*}\]
+
+&lt;p&gt;For the multivariate case, it’s similar,&lt;/p&gt;
+
+\[\begin{align*}
+f_T(t)
+&amp;amp;=\frac{\Gamma\{(\nu+p)/2\}}{\Gamma(\nu/2)(\nu\pi)^{p/2}|\Sigma|^{1/2}}\{1+\frac{1}{\nu}(t-\mu)^{\top} \Sigma^{-1}(t-\mu)\}^{-(\nu+p)/2}
+
+\end{align*}\]
+
+&lt;p&gt;where $\sigma_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$.&lt;/p&gt;
+
+&lt;h2 id=&quot;mle-of&quot;&gt;MLE of&lt;/h2&gt;
+
+&lt;p&gt;The likelihood of $(\mu,\Sigma,\nu)$ is
+$$
+\begin{align*}
+L(\mu,\Sigma,\nu|Y,\tau)&amp;amp;=f(Y|\mu,\Sigma,\tau)f(\tau|\nu)&lt;br /&gt;
+&amp;amp;=\prod_{i=1}^n \bigg((\frac{\nu}{2})^{\nu/2}\tau_i^{\nu/2-1}\frac{\exp{-\frac{\nu}{2}\tau_i}}{\Gamma(\frac{\nu}{2})}\bigg) \bigg( \frac{1}{(2\pi)^{\frac{p}{2}}|\Sigma/\tau_i|^{\frac{1}{2}}}\exp{-\frac{1}{2}(y_i-\mu)^{\top}(\Sigma/\tau_i)^{-1}(y_i-\mu)}\bigg)\&lt;/p&gt;
+
+&lt;p&gt;\end{align&lt;em&gt;}
+\(the log-likihood is,\)
+\begin{align&lt;/em&gt;}
+l(\mu,\Sigma,\nu|Y,\tau)
+&amp;amp;=\sum_{i=1}^{n}\frac{\nu}{2}\log \frac{\nu}{2}+(\frac{\nu}{2}-1)\log\tau_i-\frac{\nu}{2}\tau_i-\log\Gamma(\frac{\nu}{2})&lt;br /&gt;
+&amp;amp;~~~&lt;del&gt;-\frac{p}{2}\log2\pi-\frac{1}{2}\log|\Sigma/\tau_i|-\frac{1}{2}(y_i-\mu)^{\top}(\Sigma/\tau_i)^{-1}(y_i-\mu)&lt;br /&gt;
+&amp;amp;=n\big[\frac{\nu}{2}\log \frac{\nu}{2}-\log\Gamma(\frac{\nu}{2})-\frac{p}{2}\log2\pi-\frac{1}{2}\log|\Sigma| \big]&lt;br /&gt;
+&amp;amp;&lt;/del&gt;~&lt;del&gt;+\sum_{i=1}^n( \frac{\nu+p}{2}-1)\log \tau_i -\frac{\nu}{2}\tau_i-\frac{1}{2}\tau_i(y_i^{\top}\Sigma^{-1}y_i-2\mu^{\top}\Sigma^{-1}y_i+\mu^{\top}\Sigma^{-1}\mu)&lt;br /&gt;
+&amp;amp;=-\frac{np}{2}\log(2\pi)+\sum_{i=1}^n (\frac{p}{2}-1)\log\tau_i&lt;/del&gt;~~~&lt;del&gt;(Const)&lt;br /&gt;
+&amp;amp;&lt;/del&gt;~&lt;del&gt;+\frac{n\nu}{2}\log\frac{\nu}{2}-n\log\Gamma(\frac{\nu}{2})+\frac{\nu}{2}\sum_{i=1}^n
+(\log\tau_i-\tau_i)&lt;/del&gt;~~~~~&lt;del&gt;(\nu)&lt;br /&gt;
+&amp;amp;&lt;/del&gt;~&lt;del&gt;-\frac{n}{2}\log|\Sigma|-\frac{1}{2}tr{\Sigma^{-1}\sum_{i=1}^n\tau_iy_iy_i^{\top}}+\mu^{\top}\Sigma^{-1}\sum_{i=1}^n\tau_iy_i-\frac{1}{2}\mu^{\top}\Sigma^{-1}\mu\sum_{i=1}^n\tau_i&lt;/del&gt;~~~~~~~(\mu,\Sigma)&lt;/p&gt;
+
+&lt;p&gt;\end{align*}
+$$&lt;/p&gt;
+
+&lt;h2 id=&quot;mixture-model&quot;&gt;Mixture Model&lt;/h2&gt;
+&lt;h4 id=&quot;notation&quot;&gt;Notation&lt;/h4&gt;
+
+&lt;p&gt;${x_i}_{i=1}^N$ : the on&lt;/p&gt;
+
+&lt;p&gt;${z_i}&lt;em&gt;{i=1}^N$: the component-label vector, $z&lt;/em&gt;{ij}=(z_j)&lt;em&gt;i$ is either one or zero, according to whether the observation $x_j$ is genrated or not by the $i&lt;/em&gt;{th}$ component.&lt;/p&gt;
+
+&lt;p&gt;${u_{i}}&lt;em&gt;{i=1}^N$: missing data, is the parameter for the $i&lt;/em&gt;{th}$ observation.&lt;/p&gt;
+
+&lt;p&gt;${\mu_k}&lt;em&gt;{k=1}^K:$ the center of the $k&lt;/em&gt;{th}$ component.&lt;/p&gt;
+
+&lt;p&gt;${\Sigma_k}&lt;em&gt;{k=1}^K$: the covariance of the $k&lt;/em&gt;{th}$ component.&lt;/p&gt;
+
+&lt;p&gt;${\nu_k}&lt;em&gt;{k=1}^N$: the degree of freedom of the $k&lt;/em&gt;{th}$ component.&lt;/p&gt;
+
+&lt;h4 id=&quot;mixture-model-1&quot;&gt;Mixture model&lt;/h4&gt;
+
+&lt;p&gt;Complete data vector
+\(x_c=[x_1,\cdots,x_N,z_1,\cdots,z_N,u_1,\cdots,u_N]\)
+Complete likelihood:
+$$
+\begin{align*}
+L_c(\pi,\nu,\mu,\Sigma;x,z,u)
+&amp;amp;=P(x,z,u;\pi,\nu,\mu,\Sigma)&lt;br /&gt;
+&amp;amp;=P(z;\pi)P(u|z;\nu)P(x|z,u;\nu,\mu,\Sigma)&lt;br /&gt;
+&amp;amp;=\prod_{j=1}^N\prod_{k=1}^K P(z_{kj};\pi_k)P(u_j|z_{kj};\nu_k)P(x_j|z_{kj},u_j;\nu_k,\mu_k,\Sigma_k)&lt;br /&gt;
+&amp;amp;=\prod_{j=1}^N\prod_{k=1}^K \pi_{k}^{z_{kj}} Gamma(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})^{z_{kj}}N(x_j;\mu_k,\frac{\Sigma_k}{u_j})^{z_{kj}} &lt;br /&gt;
+&amp;amp;= \prod_{j=1}^N\prod_{k=1}^K \bigg{\pi_{k} Gamma(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})N(x_j;\mu_k,\frac{\Sigma_k}{u_j})\bigg}^{z_{kj}}&lt;/p&gt;
+
+&lt;p&gt;\end{align&lt;em&gt;}
+\(Log-likelihood:\)
+\begin{align&lt;/em&gt;}
+l_c(\pi,\nu,\mu,\Sigma;x,z,u)
+&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}(\log\pi_{k}+\log Gamma(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})+\log N(x_j;\mu_k,\frac{\Sigma_k}{u_j}))&lt;br /&gt;
+&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}[\log\pi_k+\frac{\nu_k}{2}\log (\frac{\nu_k}{2})+(\frac{\nu_k}{2}-1)\log u_j-\frac{\nu_k}{2}u_j-\log\Gamma(\frac{\nu_k}{2})&lt;br /&gt;
+&amp;amp;~~~~~-\frac{p}{2}\log(2\pi)-\frac{1}{2}\log |\Sigma_k/u_j|-\frac{1}{2}(y_j-\mu_k)^{\top}(\Sigma_k/u_j)^{-1}(y_j-\mu_k)]&lt;/p&gt;
+
+&lt;p&gt;\&lt;/p&gt;
+
+&lt;p&gt;\&lt;/p&gt;
+
+&lt;p&gt;l_1(\pi)&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}\log\pi_k\&lt;/p&gt;
+
+&lt;p&gt;l_2(\nu)
+&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}(\frac{\nu_k}{2}\log (\frac{\nu_k}{2})+(\frac{\nu_k}{2}-1)\log u_j-\frac{\nu_k}{2}u_j-\log\Gamma(\frac{\nu_k}{2}))&lt;br /&gt;
+&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}(\frac{\nu_k}{2}\log (\frac{\nu_k}{2})+\frac{\nu_k}{2}(\log u_j-u_j)-\log u_j-\log\Gamma(\frac{\nu_k}{2}))\&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;l_3(\mu,\Sigma)&amp;amp;=\sum_{j=1}^N\sum_{k=1}^K z_{kj}(-\frac{p}{2}\log(2\pi)-\frac{1}{2}\log&lt;/td&gt;
+      &lt;td&gt;\Sigma_k&lt;/td&gt;
+      &lt;td&gt;-\frac{1}{2}u_j(x_j-\mu_k)^{\top}\Sigma_k^{-1}(x_j-\mu_k))&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;\end{align*}
+$$
+Parameter: $\Psi={\pi,\theta,\nu}={\pi_j,\theta_j,\nu_j}_{j=1}^K$.&lt;/p&gt;
+
+&lt;p&gt;EM:&lt;/p&gt;
+
+&lt;p&gt;E-step, compute the $Q(\Psi;\Psi^{(t)})=E{Q(\Psi;\Psi^{(t)})}$. We should compute the $E(Z_{ij})$ and $E(U_j)$.&lt;/p&gt;
+
+&lt;p&gt;At the $t_{th}$ stage, for $E(Z_{ij})$,
+\(\begin{align}
+E(Z_{ij}|x_j;\Psi^{(t)})
+&amp;amp;=P(z_{ij}=1|x_j;\Psi^{(t)})\\
+&amp;amp;=\frac{P(z_{ij}=1,x_j;\Psi^{(t)})}{P(x_j;\Psi^{(t)})} \\
+&amp;amp;=\frac{\pi_i^{t}f(x_j;\mu_i^{t},\Sigma_i^t,\nu_i^t)}{\sum_l \pi_l^t f(x_j;\mu_l^t,\Sigma_l^t,\nu_l^t)}\\
+&amp;amp;:=\tau_{ij}^{t}
+\end{align}\)
+for the $E(U_j|X_j)$, consider the $U_j$, we already have,
+\(\begin{align*}
+X_j|U_j,z_{ij}=1 &amp;amp;\sim N(\mu_j,\Sigma_j/U_j)
+\\
+(X_j-\mu_j)^{\top}(\Sigma_j/U_j)^{-1}(X_j-\mu_j) &amp;amp;\sim \chi^2_{p}
+\\
+U_j(X_j-\mu_j)^{\top}(\Sigma_j)^{-1}(X_j-\mu_j) &amp;amp;\sim \chi^2_{p}
+\\
+U_j(X_j-\mu_j)^{\top}(\Sigma_j)^{-1}(X_j-\mu_j) &amp;amp;\sim Gamma(\frac{p}{2},\frac{1}{2})
+\end{align*}\)&lt;/p&gt;
+
+&lt;p&gt;Let $\delta_{X_j}(\mu_i,\Sigma_i)=(X_j-\mu_i)^{\top}\Sigma_i^{-1}(X_j-\mu_i)$
+$$
+\begin{align*}
+P(U_j|X_j,z_{ij})
+&amp;amp;=\frac{P(U_j|z_{ij})P(X_j|U_j,z_{ij})}{P(X_j|z_{ij})}&lt;br /&gt;
+&amp;amp;=\frac{\dfrac{(\frac{\nu_i}{2})^{\frac{\nu_i}{2}}U_j^{\frac{\nu_i}{2}-1}\exp{-\frac{\nu_i}{2} U_j}}{\Gamma(\frac{\nu_i}{2})}\dfrac{\exp{-\frac{1}{2}(X_j-\mu_i)^{\top}(\Sigma_i/U_j)^{-1}(X_j-\mu_i)}}{(2\pi)^{p/2}|\Sigma_i/U_j|^{1/2}}}&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;{\dfrac{\Gamma{(\nu_i+p)/2}{1+\frac{1}{\nu_i}(X_j-\mu_i)^{\top} (\Sigma_i)^{-1}(X_j-\mu_i)}^{-(\nu_i+p)/2}}{\Gamma(\frac{\nu_i}{2})(\nu_i\pi)^{p/2}&lt;/td&gt;
+      &lt;td&gt;\Sigma_i&lt;/td&gt;
+      &lt;td&gt;^{1/2}}}\&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;amp;=
+\frac{\dfrac{(\frac{\nu_i}{2})^{\frac{\nu_i}{2}}U_j^{\frac{\nu_i}{2}-1}\exp{-\frac{\nu_i}{2} U_j}}{\Gamma(\frac{\nu_i}{2})}\dfrac{\exp{-\frac{U_j}{2}\delta_{X_j}(\mu_i,\Sigma_i)}}{(2\pi)^{p/2}|\Sigma_i/U_j|^{1/2}}}&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;{\dfrac{\Gamma{(\nu_i+p)/2}{1+\frac{1}{\nu_i}\delta_{X_j}(\mu_i,\Sigma_i)}^{-(\nu_i+p)/2}}{\Gamma(\frac{\nu_i}{2})(\nu_i\pi)^{p/2}&lt;/td&gt;
+      &lt;td&gt;\Sigma_i&lt;/td&gt;
+      &lt;td&gt;^{1/2}}}\&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;amp;=\frac{(\frac{\nu_i}{2})^{\frac{\nu_i}{2}}U_j^{\frac{\nu_i}{2}-1}\exp{-\frac{\nu_i}{2} U_j}
+\dfrac{\exp{-\frac{U_j}{2}\delta_{X_j}(\mu_i,\Sigma_i)}}{(2\pi)^{p/2}|\Sigma_i/U_j|^{1/2}}}&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;{\dfrac{\Gamma{(\nu_i+p)/2}{1+\frac{1}{\nu_i}\delta_{X_j}(\mu_i,\Sigma_i)}^{-(\nu_i+p)/2}}{(\nu_i\pi)^{p/2}&lt;/td&gt;
+      &lt;td&gt;\Sigma_i&lt;/td&gt;
+      &lt;td&gt;^{1/2}}}\&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&amp;amp;=\frac{(\frac{\nu_i}{2})^{\frac{\nu_i+p}{2}}U_j^{\frac{\nu_i+p}{2}-1}
+\exp{-\frac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2}U_j}}{\Gamma{(\nu_i+p)/2}{1+\frac{1}{\nu_i}\delta_{X_j}(\mu_i,\Sigma_i)}^{-(\nu_i+p)/2}}\&lt;/p&gt;
+
+&lt;p&gt;&amp;amp;=\frac{(\frac{\nu_i}{2})^{\frac{\nu_i+p}{2}}{1+\frac{1}{\nu_i}\delta_{X_j}(\mu_i,\Sigma_i)}^{(\nu_i+p)/2}U_j^{\frac{\nu_i+p}{2}-1}
+\exp{-\frac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2}U_j}}{\Gamma{(\nu_i+p)/2}}\&lt;/p&gt;
+
+&lt;p&gt;&amp;amp;=\frac{(\dfrac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2})^{(\nu_i+p)/2}U_j^{(\nu_i+p)/2-1}\exp{-\dfrac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2}U_j}}&lt;/p&gt;
+
+&lt;p&gt;{\Gamma{(\nu_i+p)/2}}
+&lt;br /&gt;
+&amp;amp;=Gamma(U_j;\frac{\nu_i+p}{2},\frac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2})
+\end{align*}
+\(So,  the expectation of $U_j$,\)
+E(U_j|X_j,z_{ij};\Psi^{(t)})=\frac{\nu_i^{(t)}+p}{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)})}:=u_{ij}^{(t)}
+\(for the $E(\log U)$, we have a theorem, if a random variable $X\sim Gamma(\alpha,\beta)$, the expectation of $\log X$ is,\)
+E(\log X)=\psi(\alpha)-\log(\beta)
+$$
+where the $\psi$ is the Digamma function.&lt;/p&gt;
+
+&lt;p&gt;So, 
+\(\begin{align*}
+E(\log U_j|X_j,z_{ij=1}\Psi^{(t)})
+&amp;amp;=\psi(\frac{\nu_i^{(t)}+p}{2})-\log(\frac{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)}}{2})
+\\
+&amp;amp;=\psi(\frac{\nu_i^{(t)}+p}{2})+\log(\frac{\nu_i^{(t)}+p}{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)}})
+-\log(\frac{\nu_i^{(t)}+p}{2})
+\\
+&amp;amp;=\log u_{ij}^{(t)}+\{\psi(\frac{\nu_i^{(t)}+p}{2})-\log(\frac{\nu_i^{(t)}+p}{2})\}
+\\
+\end{align*}\)
+The last term can be interpreted as the correction for just inputing the conditional mean value $u_{ij}^{(k)}$ for $U_j$ in $\log U_j$.&lt;/p&gt;
+
+&lt;p&gt;So the $Q(\Psi;\Psi^{(k)})$ can be given by,
+\(\begin{align*}
+Q(\Psi;\Psi^{(t)})
+&amp;amp;=Q_1(\pi;\Psi^{(t)})+Q_2(\nu;\Psi^{(t)})+Q_3(\theta;\Psi^{(t)})\\
+\end{align*}\)
+Where, 
+$$
+\begin{align*}
+Q_1(\pi;\Psi^{(t)})&amp;amp;=\sum_{j=1}^{N}\sum_{i=1}^K \tau_{ij}^{(t)}\log \pi_i&lt;br /&gt;
+Q_2(\nu;\Psi^{(t)})&amp;amp;=\sum_{j=1}^{N}\sum_{i=1}^K \tau_{ij}^{(t)}Q_{2j}(\nu_i;\Psi^{(t)})&lt;br /&gt;
+Q_3(\theta;\Psi^{(t)})&amp;amp;=\sum_{j=1}^{N}\sum_{i=1}^K \tau_{ij}^{(t)}Q_{3j}(\theta_i;\Psi^{(t)})&lt;/p&gt;
+
+&lt;p&gt;\end{align&lt;em&gt;}
+\(where, on ignoring terms not involving the parameters we are concerned.\)
+\begin{align&lt;/em&gt;}
+Q_{2j}(\nu_i;\Psi^{(t)})
+&amp;amp;=-\log\Gamma(\frac{\nu_k}{2})+\frac{\nu_k}{2}\log (\frac{\nu_k}{2})+\frac{\nu_k}{2}{(\log u_{ij}^{(t)}-u_j^{(t)})+\psi(\frac{\nu_i^{(t)}+p}{2})-\log(\frac{\nu_i^{(t)}+p}{2})}
+&lt;br /&gt;
+Q_{3j}(\theta_i;\Psi^{(t)})
+&amp;amp;=-\frac{p}{2}\log(2\pi)-\frac{1}{2}\log |\Sigma_i|-\frac{1}{2}u^{(t)}&lt;em&gt;{ij}(x_j-\mu_k)^{\top}\Sigma_i^{-1}(x_j-\mu_k)
+\end{align*}
+\(And in the M-step, we compute the $\pi,\mu,\Sigma$ in a closed form,\)
+\begin{align*}
+\pi_i^{(t+1)}&amp;amp;=\sum&lt;/em&gt;{j=1}^N \frac{\tau_{ij}^{(t)}}{N}
+&lt;br /&gt;
+\mu_i^{(t+1)}&amp;amp;=\frac{\sum_{j=1}^N \tau_{ij}^{(t)}u_{ij}^{(t)}x_j}{\sum_{j=1}^N\tau_{ij}^{(t)}u_{ij}^{(t)}}
+&lt;br /&gt;
+\Sigma_i^{(t+1)}&amp;amp;=\frac{\sum_{j=1}^N \tau_{ij}^{(t)}u_{ij}^{(t)}(y_j-\mu_{i}^{(k+1)})(y_j-\mu_i^{(k+1)})^{\top}}{\sum_{j=1}^N \tau_{ij}^{(t)}}&lt;/p&gt;
+
+&lt;p&gt;\end{align*}
+\(for the $\nu_i^{(t)}$, it's the solution of the equation below,\)
+-\psi(\frac{1}{2}\nu_i)+\log(\frac{1}{2}\nu_i)+1+\frac{1}{n_i^{(t)}}\sum_{j}^N(\log u_{ij}^{(t)}-u_{ij}^{(t)})+\psi(\frac{\nu_i^{(t)}+p}{2})-\log\frac{\nu_i^{(t)}+p}{2}=0
+$$
+it can compute by &lt;strong&gt;one-dimensional search&lt;/strong&gt;, such as the half-interval method.&lt;/p&gt;</content><author><name></name></author><summary type="html">Introducion</summary></entry><entry><title type="html">First Post</title><link href="http://localhost:4000/2022/07/10/first-post.html" rel="alternate" type="text/html" title="First Post" /><published>2022-07-10T04:00:40+08:00</published><updated>2022-07-10T04:00:40+08:00</updated><id>http://localhost:4000/2022/07/10/first-post</id><content type="html" xml:base="http://localhost:4000/2022/07/10/first-post.html">&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/img/content/FirstPost/happy.gif&quot; alt=&quot;bay&quot; class=&quot;post-pic&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s my first blog, and I finally have my own homepage:)&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
