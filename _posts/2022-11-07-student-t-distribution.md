@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Student t distribution and Student-t Mixture Model"
+title:  "First Post"
 date:   2022-11-07 10:20:00
 blurb: "Student t distribution and Student-t Mixture Model"
 og_image: /assets/img/content/StudentT/gamma_distribution.svg
 
 ---
 
-## Introducion
+#### Introducion
 
 Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.
 
@@ -17,9 +17,9 @@ When the degree of freedom goes to infinity, the student-t distribution is a Gau
 
 
 
-## Generation of Student-t distribution
+#### Generation of Student-t distribution
 
-### For the unitary situation
+##### For the unitary situation
 
 Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
 $$
@@ -36,7 +36,7 @@ $$
 X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}
 $$
 
-### For the multivariate student-t
+##### For the multivariate student-t
 
 Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.
 
@@ -62,12 +62,12 @@ where $\Gamma(\alpha)$ is the Gamma function.
 
 So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.
 
-## Sampling
+#### Sampling
 
 - $u_i | \nu \overset{iid}{\sim} Gamma(\nu/2,\nu/2)$
 - $Y_i|\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)$
 
-## Compute the C.I of mean
+#### Compute the C.I of mean
 
 Owing to the features of student-t, we can use T-test to calculate the confidence interval of $\mu$ with unknown standard variance in Gaussian distribution.
 $$
@@ -78,7 +78,7 @@ $$
 $$
 
 
-## Probability Density Function(PDF)
+#### Probability Density Function(PDF)
 
 For the unitary situation,  I use the differential method to calculate the density,
 
@@ -130,7 +130,7 @@ where $\sigma_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobi
 
 
 
-## MLE of 
+#### MLE of 
 
 
 
@@ -161,7 +161,7 @@ l(\mu,\Sigma,\nu|Y,\tau)
 $$
 
 
-## Mixture Model
+
 #### Notation
 
 $\{x_i\}_{i=1}^N$ : the on
@@ -176,7 +176,7 @@ $\{\Sigma_k\}_{k=1}^K$: the covariance of the $k_{th}$ component.
 
 $\{\nu_k\}_{k=1}^N$: the degree of freedom of the $k_{th}$ component.
 
-#### Mixture model
+### Mixture model
 
 Complete data vector
 $$
