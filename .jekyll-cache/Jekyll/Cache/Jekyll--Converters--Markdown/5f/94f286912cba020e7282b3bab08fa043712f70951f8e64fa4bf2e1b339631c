@@ -1,143 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-
-  
-  
-
-  
-  
-  
-
-  
-  
-  
-
-  
-
-  
-  
-
-  
-    
-      
-      
-
-  <!-- Primary Meta Tags -->
-  <title>Yuanye Liu | Student t distribution and Student-t Mixture Model</title>
-  <meta name="title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
-  <meta name="description" content="Student t distribution and Student-t Mixture Model"/>
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:site_name" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
-  <meta property="og:type" content="article"/>
-  <meta property="og:url" content="http://localhost:4000/2022/11/07/student-t-distribution"/>
-  <meta property="og:title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
-  <meta property="og:description" content="Student t distribution and Student-t Mixture Model"/>
-  <meta property="og:image" content="http://localhost:4000"/>
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image"/>
-  <meta property="twitter:url" content="http://localhost:4000/2022/11/07/student-t-distribution"/>
-  <meta property="twitter:title" content="Yuanye Liu | Student t distribution and Student-t Mixture Model"/>
-  <meta property="twitter:description" content="Student t distribution and Student-t Mixture Model"/>
-  <meta property="twitter:image" content="http://localhost:4000"/>
-  
-    <meta property="twitter:creator" content="@HenryLau"/>
-    <meta property="twitter:site" content="@HenryLau"/>
-  
-
-  <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"/>
-  <link rel="canonical" href="http://localhost:4000/2022/11/07/student-t-distribution"/>
-  <link rel="shortcut icon" href="http://localhost:4000/assets/icon.ico" type="image/x-icon"/>
-
-  <!-- Google Analytics -->
-  <script>
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    ga('create', "", "auto");
-    ga('send', "pageview");
-  </script>
-  <script async src="https://www.google-analytics.com/analytics.js"></script>
-
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-            inlineMath: [['$','$']]
-            }
-        });
-    </script>
-
-</head>
-
-
-  <body>
-    <header class="site-header">
-  <div class="wrapper">
-    <a class="site-title" href="http://localhost:4000/">
-      <img src="http://localhost:4000/assets/img/title.jpeg" alt="Yuanye Liu" />
-    </a>
-
-    <nav class="site-nav">
-      <a href="#" class="menu-icon"></a>
-
-      <div class="menu">
-        
-          
-          
-          <a class="page-link" href="http://localhost:4000/">
-            About
-          </a>
-        
-          
-          
-          <a class="page-link" href="http://localhost:4000/experience">
-            Experience
-          </a>
-        
-          
-          
-          <a class="page-link" href="http://localhost:4000/publication">
-            Publication
-          </a>
-        
-          
-          
-          <a class="page-link" href="http://localhost:4000/blog">
-            Blog
-          </a>
-        
-      </div>
-    </nav>
-  </div>
-</header>
-
-
-    <div class="page-content">
-      <div class="wrapper">
-        <div class="post">
-
-          <header class="post-header">
-
-            
-
-            <h1 class="post-title">
-            
-              Student t distribution and Student-t Mixture Model
-            
-            </h1>
-
-            
-            <p class="post-meta"><span class="post-date">November 7, 2022
-            </span></p>
-          </header>
-
-          <article class="post-content">
-            <h2 id="introducion">Introducion</h2>
+I"^;<h2 id="introducion">Introducion</h2>
 
 <p>Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.</p>
 
@@ -184,11 +45,9 @@
 
 <p>And, the $u=Y/\nu$ is a Gamma distribution, satisfying $u\sim \operatorname{Gamma}(\dfrac{\nu}{2},\dfrac{\nu}{2})$. also called scaled chi-square distribution.</p>
 
-<p>For $x\sim \operatorname{Gamma}(\alpha,\beta)$,</p>
-
-\[f(x ; \alpha, \beta)=\frac{x^{\alpha-1} e^{-\beta x} \beta^{\alpha}}{\Gamma(\alpha)} \quad \text { for } x&gt;0 \quad \alpha, \beta&gt;0\]
-
-<p>where $\Gamma(\alpha)$ is the Gamma function.</p>
+<p>For $x\sim \operatorname{Gamma}(\alpha,\beta)$,
+\(f(x ; \alpha, \beta)=\frac{x^{\alpha-1} e^{-\beta x} \beta^{\alpha}}{\Gamma(\alpha)} \quad \text { for } x&gt;0 \quad \alpha, \beta&gt;0\)
+where $\Gamma(\alpha)$ is the Gamma function.</p>
 
 <p><img src="/assets/img/content/StudentT/gamma_distribution.svg" alt="Gamma-distribution" class="post-pic" /></p>
 
@@ -196,8 +55,28 @@
 
 <h4 id="sampling">Sampling</h4>
 
-\[u_i | \nu \overset{iid}{\sim} \operatorname{Gamma}(\nu/2,\nu/2)\\
-X_i|\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)\]
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$u_i</td>
+          <td>\nu \overset{iid}{\sim} \operatorname{Gamma}(\nu/2,\nu/2)$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>$X_i</td>
+          <td>\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
 
 <h2 id="probability-density-functionpdf">Probability Density Function(PDF)</h2>
 
@@ -222,32 +101,32 @@ f_T(t) \mathrm dt
 f_T(t)&amp;=\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}\\
 &amp;=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}|Y=y\}\}\\
 &amp;=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\}\}\\
-&amp;=E\{\int_0^{+\infty}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\mathrm d y \}\\
-&amp;=\int_0^{+\infty}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
-&amp;=\int_0^{+\infty}\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+&amp;=E\{\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\mathrm d y \}\\
+&amp;=\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+&amp;=\int_0^{+\infin}\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
 
-&amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}\int_0^{+\infty} y^{\frac{n-1}{2}}\exp\{-(\frac{1}{2}+\frac{t^2}{2n})y\} \mathrm d y\\
+&amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}\int_0^{+\infin} y^{\frac{n-1}{2}}\exp\{-(\frac{1}{2}+\frac{t^2}{2n})y\} \mathrm d y\\
 
  \overset{u=(\frac{1}{2}+\frac{t^2}{2n})y}{\rightarrow}
- &amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}(\frac{1}{2}(1+\frac{t^2}{n}))^{-\frac{n+1}{2}}\int_0^{+\infty}u^{\frac{n+1}{2}-1}\exp\{-u\}\mathrm d u \\
+ &amp;=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}(\frac{1}{2}(1+\frac{t^2}{n}))^{-\frac{n+1}{2}}\int_0^{+\infin}u^{\frac{n+1}{2}-1}\exp\{-u\}\mathrm d u \\
  &amp;=\dfrac{\Gamma({\frac{n+1}{2}})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{t^2}{n})^{-\frac{n+1}{2}}
 
 \end{align*}\]
 
-<p>Which is,</p>
-
-\[f_T(t)
-=\dfrac{\Gamma({\frac{\nu+1}{2}})}{\sqrt{\pi\nu}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{n})^{-\frac{\nu+1}{2}}a\]
+<p>Which is,
+\(f_T(t)
+=\dfrac{\Gamma({\frac{\nu+1}{2}})}{\sqrt{\pi\nu}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{n})^{-\frac{\nu+1}{2}}a\)</p>
 
 <h4 id="mulitivariate-case">Mulitivariate case</h4>
 
-<p>For the multivariate case, it’s similar,</p>
-
-\[\begin{align*}
+<p>For the multivariate case, it’s similar,
+$$
+\begin{align*}
 f_T(t)
-&amp;=\frac{\Gamma\{(\nu+p)/2\}}{\Gamma(\nu/2)(\nu\pi)^{p/2}|\Sigma|^{1/2}}\{1+\frac{1}{\nu}(t-\mu)^{\top} \Sigma^{-1}(t-\mu)\}^{-(\nu+p)/2}
+&amp;=\frac{\Gamma{(\nu+p)/2}}{\Gamma(\nu/2)(\nu\pi)^{p/2}|\Sigma|^{1/2}}{1+\frac{1}{\nu}(t-\mu)^{\top} \Sigma^{-1}(t-\mu)}^{-(\nu+p)/2}</p>
 
-\end{align*}\]
+<p>\end{align*}
+$$</p>
 
 <p>where $\delta_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$.</p>
 
@@ -288,15 +167,15 @@ l(\mu,\Sigma,\nu|Y,\tau)
 
 <p>${x_j}$ : the observations.</p>
 
-<p>${z_j}$: the component-label vector, $z_{ij}=1$ means the $j_{th}$ observation belongs to the $i_{th}$ componet.</p>
+<p>${z_j}$: the component-label vector, $z_{ij}=(z_j)<em>i$ .$z</em>{ij}=1$ means the $j_{th}$ observation belongs to the $i_{th}$ componets</p>
 
 <p>${u_{j}}$: missing data, is the parameter for the $j_{th}$ observation.</p>
 
-<p>${\mu_i}:$ the center of the $i_{th}$ component.</p>
+<p>${\mu_i}<em>{i=1}^K:$ the center of the $i</em>{th}$ component.</p>
 
-<p>${\Sigma_i}$: the covariance of the $i_{th}$ component.</p>
+<p>${\Sigma_i}<em>{i=1}^K$: the covariance of the $i</em>{th}$ component.</p>
 
-<p>${\nu_i}$: the degree of freedom of the $i_{th}$ component.</p>
+<p>${\nu_i}<em>{i=1}^N$: the degree of freedom of the $i</em>{th}$ component.</p>
 
 <h3 id="complete-log-likelihood">Complete log-likelihood</h3>
 
@@ -470,147 +349,4 @@ Q_{3j}(\theta_i;\Psi^{(t)})
 \[-\psi(\frac{1}{2}\nu_i)+\log(\frac{1}{2}\nu_i)+1+\frac{1}{n_i^{(t)}}\sum_{j}^N(\log u_{ij}^{(t)}-u_{ij}^{(t)})+\psi(\frac{\nu_i^{(t)}+p}{2})-\log\frac{\nu_i^{(t)}+p}{2}=0\]
 
 <p>it can compute by <strong>one-dimensional search</strong>, such as the half-interval method.</p>
-
-          </article>
-
-          
-
-      </div>
-      </div>
-    </div>
-
-    <footer class="site-footer">
-  <div class="wrapper">
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <h4>CONTACT</h4>
-
-        <div class="social-links">
-          
-            <div class="social-link contact-links">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/email.png"
-                alt="email"
-              />
-              <a href="mailto:yuanyeliu7@gmail.com" id="email-link">
-                
-                  yuanyeliu7@gmail.com
-                
-              </a>
-            </div>
-
-          
-        </div>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        <h4>FOLLOW</h4>
-
-        <div class="social-links follow-links">
-          
-            <div class="social-link">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/twitter.png"
-                alt="twitter"
-              />
-              <a href="http://twitter.com/henrylau7_">
-                
-                  Twitter
-                
-              </a>
-            </div>
-
-          
-            <div class="social-link">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/github.png"
-                alt="github"
-              />
-              <a href="http://github.com/henrylau7">
-                
-                  GitHub
-                
-              </a>
-            </div>
-
-          
-        </div>
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <h4>LINK</h4>
-
-        <div class="social-links follow-links">
-          
-            <div class="social-link">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/xiahai.png"
-                alt="xiahai"
-              />
-              <a href="https://zmiclab.github.io/zxh/">
-                
-                  Xiahai
-                
-              </a>
-            </div>
-
-          
-            <div class="social-link">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/zhiyang.png"
-                alt="zhiyang"
-              />
-              <a href="https://name-less-king.github.io/">
-                
-                  Zhiyang
-                
-              </a>
-            </div>
-
-          
-            <div class="social-link">
-
-              
-              <img
-                src="http://localhost:4000/assets/img/icons/lesi.png"
-                alt="lesi"
-              />
-              <a href="https://truenobility303.github.io/">
-                
-                  Lesi
-                
-              </a>
-            </div>
-
-          
-        </div>
-      </div>
-
-      
-    </div>
-  </div>
-</footer>
-
-
-  
-
-
-
-
-
-
-    <script type="text/javascript" src="http://localhost:4000/assets/js/vendor/cash-4.1.5.min.js"></script>
-<script type="text/javascript" src="http://localhost:4000/assets/js/site.js"></script>
-
-  </body>
-</html>
+:ET

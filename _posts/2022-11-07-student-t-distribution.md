@@ -7,69 +7,19 @@ og_image: /assets/img/content/StudentT/gamma_distribution.svg
 
 ---
 
-#### Introducion
+## Introducion
 
 Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.
 
-<img src="{{ "/assets/img/content/StudentT/Student_t.svg" | absolute_url }}" alt="bay" class="post-pic"/>
+
+<img src="/assets/img/content/StudentT/Student_t.svg" alt="student-t" class="post-pic" style="align:center;"/>
+
 
 When the degree of freedom goes to infinity, the student-t distribution is a Gaussian. The parameter $\nu$ reflects the robustness of the distribution.
 
-
-
-#### Generation of Student-t distribution
-
-##### For the unitary situation
-
-Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
-$$
-f_Y(y)=\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}
-$$
-where $\Gamma(z)$ is the Gamma function, which is, 
-$$
-\Gamma(z)=\int_{0}^{\infty} t^{z-1} e^{-t} d t
-$$
-
-
-And we have a standard distribution, $Z\sim N(0,1)$, then we can construct a student-t distribution,
-$$
-X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}
-$$
-
-##### For the multivariate student-t
-
-Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.
-
-So the multivariate student-t is,
-$$
-X=\frac{Z}{\sqrt{Y/\nu}}+\mu\sim t_p(\mu,\Sigma,\nu)
-$$
-And here I want to introduce a perspective to understand $t$ distribution. From the eqution above, we can find out that, $\frac{Z}{\sqrt{Y/\nu}}\sim t_p(0,\Sigma,\nu)$. Meanwhile, if we regard the $u=Y/\nu$ as a constant or say fixed number, it's just a modification of covariance matrix in a $N(0,\Sigma)$, which is to say, if we fix $u$, we have,
-$$
-X|u\sim N(\mu,\Sigma/u)
-$$
-Student $t$ distribution is a gaussian distribution with a **stochastic covariance** matrix.
-
-And, the $u=Y/\nu$ is a Gamma distribution, satisfying $u\sim Gamma(\dfrac{\nu}{2},\dfrac{\nu}{2})$. also called scaled chi-square distribution.
-
-For $x\sim Gamma(\alpha,\beta)$,
-$$
-f(x ; \alpha, \beta)=\frac{x^{\alpha-1} e^{-\beta x} \beta^{\alpha}}{\Gamma(\alpha)} \quad \text { for } x>0 \quad \alpha, \beta>0
-$$
-where $\Gamma(\alpha)$ is the Gamma function.
-
-<img src="{{ "/assets/img/content/StudentT/gamma_distribution.svg" | absolute_url }}" alt="bay" class="post-pic"/>
-
-So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.
-
-#### Sampling
-
-- $u_i | \nu \overset{iid}{\sim} Gamma(\nu/2,\nu/2)$
-- $Y_i|\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)$
-
-#### Compute the C.I of mean
-
 Owing to the features of student-t, we can use T-test to calculate the confidence interval of $\mu$ with unknown standard variance in Gaussian distribution.
+
+
 $$
 \begin{align*}
 \frac{\bar x -\mu}{\sigma/\sqrt{n}} &\sim N(0,1)\\
@@ -78,7 +28,73 @@ $$
 $$
 
 
-#### Probability Density Function(PDF)
+## Generation of Student-t distribution
+
+### For the unitary situation
+
+Suppose we have a Chi-square random variable, with degree of freedom $\nu$.  $Y\sim \chi_{\nu}^2,$
+
+
+$$
+f_Y(y)=\frac{y^{\frac{\nu}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{\nu}{2} }\Gamma (\frac{\nu}{2})}
+$$
+
+
+where $\Gamma(z)$ is the Gamma function, which is, 
+
+$$
+\Gamma(z)=\int_{0}^{\infty} t^{z-1} e^{-t} d t
+$$
+
+
+And we have a standard distribution, $Z\sim N(0,1)$, then we can construct a student-t distribution,
+
+$$
+X=\frac{Z}{\sqrt{Y/\nu}}\sim t_{\nu}
+$$
+
+### For the multivariate student-t
+
+Similarily, we need a Chi-square random variable, with degree of freedom $\nu$, $Y\sim \chi^2_\nu$, and we have a multivariate Gaussian distribution, $Z\sim N(0,\Sigma)$. where $\Sigma$ is a $p\times p$ positive matrix.
+
+So the multivariate student-t is,
+
+$$
+X=\frac{Z}{\sqrt{Y/\nu}}+\mu\sim t_p(\mu,\Sigma,\nu)
+$$
+
+And here I want to introduce a perspective to understand $t$ distribution. From the eqution above, we can find out that, $\frac{Z}{\sqrt{Y/\nu}}\sim t_p(0,\Sigma,\nu)$. Meanwhile, if we regard the $u=Y/\nu$ as a constant or say fixed number, it's just a modification of covariance matrix in a $N(0,\Sigma)$, which is to say, if we fix $u$, we have,
+
+$$
+X|u\sim N(\mu,\Sigma/u)
+$$
+
+Student $t$ distribution is a gaussian distribution with a **stochastic covariance** matrix.
+
+And, the $u=Y/\nu$ is a Gamma distribution, satisfying $u\sim \operatorname{Gamma}(\dfrac{\nu}{2},\dfrac{\nu}{2})$. also called scaled chi-square distribution.
+
+For $x\sim \operatorname{Gamma}(\alpha,\beta)$,
+
+$$
+f(x ; \alpha, \beta)=\frac{x^{\alpha-1} e^{-\beta x} \beta^{\alpha}}{\Gamma(\alpha)} \quad \text { for } x>0 \quad \alpha, \beta>0
+$$
+
+where $\Gamma(\alpha)$ is the Gamma function.
+
+<img src="/assets/img/content/StudentT/gamma_distribution.svg" alt="Gamma-distribution" class="post-pic"/>
+
+So when $\nu$ goes to infinity, the $u$ goes to 1, so the t distribution goes to a Gaussion $N(\mu,\Sigma)$.
+
+#### Sampling
+
+$$
+u_i | \nu \overset{iid}{\sim} \operatorname{Gamma}(\nu/2,\nu/2)\\
+X_i|\mu,\Sigma,u_i\overset{ind}{\sim} N(\mu,\Sigma/u_i)
+$$
+
+## Probability Density Function(PDF)
+
+### Unitary
 
 For the unitary situation,  I use the differential method to calculate the density,
 
@@ -86,12 +102,7 @@ For the unitary situation,  I use the differential method to calculate the densi
 - $P(X=x)=f(x)\mathrm d x$
 - $\mathrm d x=\sqrt{\dfrac{y}{\nu}}\mathrm d t$
 
-$$
-f_T(t)
-=\dfrac{\Gamma({\frac{\nu+1}{2}})}{\sqrt{\pi\nu}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{n})^{-\frac{\nu+1}{2}}
-$$
-
-
+And we have,
 
 $$
 \begin{align*}
@@ -103,18 +114,28 @@ f_T(t) \mathrm dt
 f_T(t)&=\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}\\
 &=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 Y}{2n}\} \sqrt{Y/n}|Y=y\}\}\\
 &=E\{E\{\dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\}\}\\
-&=E\{\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\mathrm d y \}\\
-&=\int_0^{+\infin}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
-&=\int_0^{+\infin}\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+&=E\{\int_0^{+\infty}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}\mathrm d y \}\\
+&=\int_0^{+\infty}f_Y(y)   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
+&=\int_0^{+\infty}\frac{y^{\frac{n}{2}-1}e^{-\frac{y}{2}}}{2^{\frac{n}{2} }\Gamma (\frac{n}{2})}   \dfrac{1}{\sqrt{2\pi}}\exp\{-\dfrac{t^2 y}{2n}\} \sqrt{y/n}~\mathrm d y\\
 
-&=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}\int_0^{+\infin} y^{\frac{n-1}{2}}\exp\{-(\frac{1}{2}+\frac{t^2}{2n})y\} \mathrm d y\\
+&=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}\int_0^{+\infty} y^{\frac{n-1}{2}}\exp\{-(\frac{1}{2}+\frac{t^2}{2n})y\} \mathrm d y\\
 
  \overset{u=(\frac{1}{2}+\frac{t^2}{2n})y}{\rightarrow}
- &=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}(\frac{1}{2}(1+\frac{t^2}{n}))^{-\frac{n+1}{2}}\int_0^{+\infin}u^{\frac{n+1}{2}-1}\exp\{-u\}\mathrm d u \\
+ &=\frac{1}{\sqrt{2n\pi}}\frac{1}{2^{n/2}\Gamma(\frac{n}{2})}(\frac{1}{2}(1+\frac{t^2}{n}))^{-\frac{n+1}{2}}\int_0^{+\infty}u^{\frac{n+1}{2}-1}\exp\{-u\}\mathrm d u \\
  &=\dfrac{\Gamma({\frac{n+1}{2}})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{t^2}{n})^{-\frac{n+1}{2}}
 
 \end{align*}
 $$
+
+Which is,
+
+$$
+f_T(t)
+=\dfrac{\Gamma({\frac{\nu+1}{2}})}{\sqrt{\pi\nu}\Gamma(\frac{\nu}{2})}(1+\frac{t^2}{n})^{-\frac{\nu+1}{2}}a
+$$
+
+
+#### Mulitivariate case
 
 For the multivariate case, it's similar,
 
@@ -126,15 +147,16 @@ f_T(t)
 \end{align*}
 $$
 
-where $\sigma_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$. 
+where $\delta_T(\mu,\Sigma)=(t-\mu)^{\top} \Sigma^{-1}(t-\mu)$ is the Mahalanobis distance from $t$ to the center $\mu$ with respect to $\Sigma$. 
 
 
 
-#### MLE of 
+## Likelihood of $\mu,\Sigma$ with observed $\nu$
 
 
 
 The likelihood of $(\mu,\Sigma,\nu)$ is
+
 $$
 \begin{align*}
 L(\mu,\Sigma,\nu|Y,\tau)&=f(Y|\mu,\Sigma,\tau)f(\tau|\nu)\\
@@ -142,7 +164,9 @@ L(\mu,\Sigma,\nu|Y,\tau)&=f(Y|\mu,\Sigma,\tau)f(\tau|\nu)\\
 
 \end{align*}
 $$
+
 the log-likihood is,
+
 $$
 \begin{align*}
 l(\mu,\Sigma,\nu|Y,\tau)
@@ -160,41 +184,52 @@ l(\mu,\Sigma,\nu|Y,\tau)
 \end{align*}
 $$
 
+## Student-t Mixture Model
+
+### Notation
+
+index of observations: $i=1,\cdots,K$
+
+index of components $j=1,\cdots,N$
+
+$\{x_j\}$ : the observations.
+
+$\{z_j\}$: the component-label vector, $z_{ij}=1$ means the $j_{th}$ observation belongs to the $i_{th}$ componet.
+
+$\{u_{j}\}$: missing data, is the parameter for the $j_{th}$ observation. 
+
+$\{\mu_i\}:$ the center of the $i_{th}$ component.
+
+$\{\Sigma_i\}$: the covariance of the $i_{th}$ component.
+
+$\{\nu_i\}$: the degree of freedom of the $i_{th}$ component.
 
 
-#### Notation
 
-$\{x_i\}_{i=1}^N$ : the on
-
-$\{z_i\}_{i=1}^N$: the component-label vector, $z_{ij}=(z_j)_i$ is either one or zero, according to whether the observation $x_j$ is genrated or not by the $i_{th}$ component.
-
-$\{u_{i}\}_{i=1}^N$: missing data, is the parameter for the $i_{th}$ observation. 
-
-$\{\mu_k\}_{k=1}^K:$ the center of the $k_{th}$ component.
-
-$\{\Sigma_k\}_{k=1}^K$: the covariance of the $k_{th}$ component.
-
-$\{\nu_k\}_{k=1}^N$: the degree of freedom of the $k_{th}$ component.
-
-### Mixture model
+### Complete log-likelihood
 
 Complete data vector
+
 $$
 x_c=[x_1,\cdots,x_N,z_1,\cdots,z_N,u_1,\cdots,u_N]
 $$
+
 Complete likelihood:
+
 $$
 \begin{align*}
 L_c(\pi,\nu,\mu,\Sigma;x,z,u)
 &=P(x,z,u;\pi,\nu,\mu,\Sigma)\\
 &=P(z;\pi)P(u|z;\nu)P(x|z,u;\nu,\mu,\Sigma)\\
 &=\prod_{j=1}^N\prod_{k=1}^K P(z_{kj};\pi_k)P(u_j|z_{kj};\nu_k)P(x_j|z_{kj},u_j;\nu_k,\mu_k,\Sigma_k)\\
-&=\prod_{j=1}^N\prod_{k=1}^K \pi_{k}^{z_{kj}} Gamma(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})^{z_{kj}}N(x_j;\mu_k,\frac{\Sigma_k}{u_j})^{z_{kj}} \\
-&= \prod_{j=1}^N\prod_{k=1}^K \bigg\{\pi_{k} Gamma(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})N(x_j;\mu_k,\frac{\Sigma_k}{u_j})\bigg\}^{z_{kj}} 
+&=\prod_{j=1}^N\prod_{k=1}^K \pi_{k}^{z_{kj}} \operatorname{Gamma}(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})^{z_{kj}}N(x_j;\mu_k,\frac{\Sigma_k}{u_j})^{z_{kj}} \\
+&= \prod_{j=1}^N\prod_{k=1}^K \bigg\{\pi_{k} \operatorname{Gamma}(u_j;\frac{\nu_k}{2},\frac{\nu_k}{2})N(x_j;\mu_k,\frac{\Sigma_k}{u_j})\bigg\}^{z_{kj}} 
 
 \end{align*}
 $$
+
 Log-likelihood:
+
 $$
 \begin{align*}
 l_c(\pi,\nu,\mu,\Sigma;x,z,u)
@@ -217,15 +252,19 @@ l_3(\mu,\Sigma)&=\sum_{j=1}^N\sum_{k=1}^K z_{kj}(-\frac{p}{2}\log(2\pi)-\frac{1}
 
 \end{align*}
 $$
+
 Parameter: $\Psi=\{\pi,\theta,\nu\}=\{\pi_j,\theta_j,\nu_j\}_{j=1}^K$.
 
 
 
-EM:
+## EM
 
-E-step, compute the $Q(\Psi;\Psi^{(t)})=E\{Q(\Psi;\Psi^{(t)})\}$. We should compute the $E(Z_{ij})$ and $E(U_j)$.
+### E-step.
+
+Compute the $Q(\Psi;\Psi^{(t)})=E\{l_c(\pi,\nu,\mu,\Sigma;x,z,u)\}$. We should compute the $E(Z_{ij})$ and $E(U_j)$.
 
 At the $t_{th}$ stage, for $E(Z_{ij})$,
+
 $$
 \begin{align}
 E(Z_{ij}|x_j;\Psi^{(t)})
@@ -235,23 +274,10 @@ E(Z_{ij}|x_j;\Psi^{(t)})
 &:=\tau_{ij}^{t}
 \end{align}
 $$
+
 for the $E(U_j|X_j)$, consider the $U_j$, we already have,
-$$
-\begin{align*}
-X_j|U_j,z_{ij}=1 &\sim N(\mu_j,\Sigma_j/U_j)
-\\
-(X_j-\mu_j)^{\top}(\Sigma_j/U_j)^{-1}(X_j-\mu_j) &\sim \chi^2_{p}
-\\
-U_j(X_j-\mu_j)^{\top}(\Sigma_j)^{-1}(X_j-\mu_j) &\sim \chi^2_{p}
-\\
-U_j(X_j-\mu_j)^{\top}(\Sigma_j)^{-1}(X_j-\mu_j) &\sim Gamma(\frac{p}{2},\frac{1}{2})
-\end{align*}
-$$
 
 
-
-
-Let $\delta_{X_j}(\mu_i,\Sigma_i)=(X_j-\mu_i)^{\top}\Sigma_i^{-1}(X_j-\mu_i)$
 $$
 \begin{align*}
 P(U_j|X_j,z_{ij})
@@ -288,20 +314,26 @@ P(U_j|X_j,z_{ij})
 &=Gamma(U_j;\frac{\nu_i+p}{2},\frac{\nu_i+\delta_{X_j}(\mu_i,\Sigma_i)}{2})
 \end{align*}
 $$
+
 So,  the expectation of $U_j$,
+
 $$
 E(U_j|X_j,z_{ij};\Psi^{(t)})=\frac{\nu_i^{(t)}+p}{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)})}:=u_{ij}^{(t)}
 $$
-for the $E(\log U)$, we have a theorem, if a random variable $X\sim Gamma(\alpha,\beta)$, the expectation of $\log X$ is,
+
+for the $E(\log U)$, we have a theorem, if a random variable $X\sim \operatorname{Gamma}(\alpha,\beta)$, the expectation of $\log X$ is,
+
 $$
 E(\log X)=\psi(\alpha)-\log(\beta)
 $$
-where the $\psi$ is the Digamma function.
+
+where the $\psi$ is the DiGamma function.
 
 So, 
+
 $$
 \begin{align*}
-E(\log U_j|X_j,z_{ij=1}\Psi^{(t)})
+E(\log U_j|X_j,z_{ij=1};\Psi^{(t)})
 &=\psi(\frac{\nu_i^{(t)}+p}{2})-\log(\frac{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)}}{2})
 \\
 &=\psi(\frac{\nu_i^{(t)}+p}{2})+\log(\frac{\nu_i^{(t)}+p}{\nu_i^{(t)}+\delta_{X_j}(\mu_i^{(t)},\Sigma_i^{(t)}})
@@ -311,16 +343,20 @@ E(\log U_j|X_j,z_{ij=1}\Psi^{(t)})
 \\
 \end{align*}
 $$
+
 The last term can be interpreted as the correction for just inputing the conditional mean value $u_{ij}^{(k)}$ for $U_j$ in $\log U_j$.
 
 So the $Q(\Psi;\Psi^{(k)})$ can be given by,
+
 $$
 \begin{align*}
 Q(\Psi;\Psi^{(t)})
 &=Q_1(\pi;\Psi^{(t)})+Q_2(\nu;\Psi^{(t)})+Q_3(\theta;\Psi^{(t)})\\
 \end{align*}
 $$
+
 Where, 
+
 $$
 \begin{align*}
 Q_1(\pi;\Psi^{(t)})&=\sum_{j=1}^{N}\sum_{i=1}^K \tau_{ij}^{(t)}\log \pi_i\\
@@ -329,7 +365,9 @@ Q_3(\theta;\Psi^{(t)})&=\sum_{j=1}^{N}\sum_{i=1}^K \tau_{ij}^{(t)}Q_{3j}(\theta_
 
 \end{align*}
 $$
+
 where, on ignoring terms not involving the parameters we are concerned.
+
 $$
 \begin{align*}
 Q_{2j}(\nu_i;\Psi^{(t)})
@@ -339,7 +377,11 @@ Q_{3j}(\theta_i;\Psi^{(t)})
 &=-\frac{p}{2}\log(2\pi)-\frac{1}{2}\log |\Sigma_i|-\frac{1}{2}u^{(t)}_{ij}(x_j-\mu_k)^{\top}\Sigma_i^{-1}(x_j-\mu_k)
 \end{align*}
 $$
-And in the M-step, we compute the $\pi,\mu,\Sigma$ in a closed form, 
+
+### M-step 
+
+We compute the $\pi,\mu,\Sigma$ in a closed form, 
+
 $$
 \begin{align*}
 \pi_i^{(t+1)}&=\sum_{j=1}^N \frac{\tau_{ij}^{(t)}}{N}
@@ -350,8 +392,11 @@ $$
 
 \end{align*}
 $$
+
 for the $\nu_i^{(t)}$, it's the solution of the equation below,
+
 $$
 -\psi(\frac{1}{2}\nu_i)+\log(\frac{1}{2}\nu_i)+1+\frac{1}{n_i^{(t)}}\sum_{j}^N(\log u_{ij}^{(t)}-u_{ij}^{(t)})+\psi(\frac{\nu_i^{(t)}+p}{2})-\log\frac{\nu_i^{(t)}+p}{2}=0
 $$
+
 it can compute by **one-dimensional search**, such as the half-interval method.
