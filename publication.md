@@ -17,10 +17,13 @@ items:
 
 <!-- Coming soon... -->
 
-**Conferences**
-* <b>A Reliable and Interpretable Framework of Multi-view Learning for Liver Fibrosis Staging</b> <br> 
-  Zheyao Gao*, <b>Yuanye Liu*<b>, Fuping Wu, Nannan Shi, Yuxin Shi, Xiahai Zhuang<br>
-  <b>MICCAI2023 (Early Accept, Top 14% in 2253 submissions)</b>.<br>
-  
+## Conferences
+* <img src="./assets/img/publication/MICCAI2023.png" alt="SciChina" width="400px" height="300px"> <br>
+  <font size=4><b>A Reliable and Interpretable Framework of Multi-view Learning for Liver Fibrosis Staging</b></font> 
+  Zheyao Gao*, <b>Yuanye Liu*</b>, Fuping Wu, Nannan Shi, Yuxin Shi, Xiahai Zhuang <br>
+  <b>MICCAI2023 (<font color= red>Early Accept</font>, Top 14% in 2253 submissions)</b>.<br>
+
+
+
 <br />
 <br />
