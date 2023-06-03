@@ -17,7 +17,8 @@ My research interests are mainly about machine learning, computer vision.
 
 
 ## AWARD
-* Excellent Graduate Award of Shanghai (top 5%), 2023
+* Excellent Graduate Award of Shanghai (top 5%), [2023]
+* Fudan University Undergraduate Scholarships (top ~30%) [2020,2021,2022,2023]
 
 ## NEWS
 * [May 25, 2023] A paper was accepted by **MICCAI2023** (<font color=red>Early Accepted</font> top 14% in total 2253 submissions).
