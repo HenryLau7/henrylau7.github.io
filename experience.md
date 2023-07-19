@@ -6,7 +6,9 @@ slug: /experience
 
 ## EDUCATION
 
-* *Sept. 2019 - Jun. 2023(Expected)*, **B.S. in Data Science**
+* *Sept. 2023 - Present*, **M.Sc. in Statistics**
+<br><a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. 
+* *Sept. 2019 - Jun. 2023*, **B.S. in Data Science**
 <br><a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. 
 
 ## ACTIVITY
