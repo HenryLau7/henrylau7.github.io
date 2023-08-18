@@ -21,4 +21,5 @@ My research interests are mainly about machine learning, computer vision and med
 * Fudan University Undergraduate Scholarships (top ~30%) [2020,2021,2022,2023]
 
 ## NEWS
+* [Aug 17, 2023] Our MICCAI paper was selected as oral presentation! 
 * [May 25, 2023] A paper was accepted by **MICCAI2023** (<font color=red>Early Accepted</font> top 14% in total 2253 submissions).
