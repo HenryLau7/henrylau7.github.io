@@ -11,6 +11,10 @@ slug: /experience
 * *Sept. 2019 - Jun. 2023*, **B.S. in Data Science**
 <br><a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. 
 
+## TEACHING ASSISTANT
+* [2023FALL] FUDAN DATA130049, Image Processing and Visualization. (Instructor:<a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>)
+
+
 ## ACTIVITY
 * *Sept. 2023 - Present*, **Deputy secretary**
 <br> Communist Youth League of School of Data Science, Fudan University
