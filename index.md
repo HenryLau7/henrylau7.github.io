@@ -17,6 +17,7 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## AWARD
+* MICCAI STAR award (top 3%), [2023]
 * Excellent Graduate Award of Shanghai (top 5%), [2023]
 * Fudan University Undergraduate Scholarships (top ~30%) [2020,2021,2022,2023]
 
