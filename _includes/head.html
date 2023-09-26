@@ -34,6 +34,10 @@
       {% assign twitter_username = follow.username %}
       {% break %}
     {% endif %}
+    {% if follow.name == 'scholar' %}
+    {% assign scholar_username = follow.username %}
+    {% break %}
+  {% endif %}
   {% endfor %}
 
   <!-- Primary Meta Tags -->
@@ -58,6 +62,17 @@
   {% if twitter_username %}
     <meta property="twitter:creator" content="{{ twitter_username }}"/>
     <meta property="twitter:site" content="{{ twitter_username }}"/>
+  {% endif %}
+
+  <!-- Google scholar -->
+  <meta property="scholar:card" content="summary_large_image"/>
+  <meta property="scholar:url" content="{{ page_url }}"/>
+  <meta property="scholar:title" content="{{ page_title }}"/>
+  <meta property="scholar:description" content="{{ page_description }}"/>
+  <meta property="scholar:image" content="{{ page_image }}"/>
+  {% if twitter_username %}
+    <meta property="scholar:creator" content="{{ scholar_username }}"/>
+    <meta property="scholar:site" content="{{ scholar_username }}"/>
   {% endif %}
 
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | absolute_url }}"/>
