@@ -14,6 +14,8 @@ slug: /experience
 ## TEACHING ASSISTANT
 * [2023FALL] FUDAN DATA130049, Image Processing and Visualization. (Instructor:<a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>)
 
+## REVIEWER
+* <a href="https://www.sciencedirect.com/journal/neural-networks/"> Neural Networks</a>
 
 ## ACTIVITY
 * *Sept. 2023 - Present*, **Deputy secretary**
