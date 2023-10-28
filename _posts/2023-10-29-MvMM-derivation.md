@@ -14,7 +14,7 @@ Yuanye Liu 2023.10
 
 ## Introduction
 
-This is a simple but detailed derivation for MvMM [[Link]](https://ieeexplore.ieee.org/document/8458220). The prerequisite is GMM-EM which you can refer to [[GMM]](./2023-10-28-GMM.md). The PDF version is in my Github [Notes Page](https://github.com/HenryLau7/Notes/blob/main/2023-10-29-MvMM-derivation.pdf), where you can give me a precious star if you think it's useful for you and I'll appreciate it :)
+This is a simple but detailed derivation for MvMM [[Link]](https://ieeexplore.ieee.org/document/8458220). The prerequisite is GMM-EM which you can refer to [[GMM]](../2023-10-28-GMM.md). The PDF version is in my Github [Notes Page](https://github.com/HenryLau7/Notes/blob/main/2023-10-29-MvMM-derivation.pdf), where you can give me a precious star if you think it's useful for you and I'll appreciate it :)
 
 ## Contents
 1. Likelihood function [[Link]](#likelihood-function)
