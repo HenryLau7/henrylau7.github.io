@@ -9,7 +9,8 @@ og_image: /assets/img/content/StudentT/gamma_distribution.svg
 
 ## Introducion
 
-Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.
+Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve. The PDF version is in my Github [Notes Page](https://github.com/HenryLau7/Notes/blob/main/2022-11-07-student-t-distribution.pdf), where you can give me a precious star if you think it's useful for you and I'll appreciate it :)
+
 
 
 <img src="/assets/img/content/StudentT/Student_t.svg" alt="student-t" class="post-pic" style="align:center;"/>

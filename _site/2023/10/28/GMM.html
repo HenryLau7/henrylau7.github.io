@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+
+  
+
+  
+  
+
+  
+    
+      
+      
+
+  <!-- Primary Meta Tags -->
+  <title>Yuanye Liu | Gaussian Mixture Model (GMM)</title>
+  <meta name="title" content="Yuanye Liu | Gaussian Mixture Model (GMM)"/>
+  <meta name="description" content="Gaussian Mixture Model (GMM)"/>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:site_name" content="Yuanye Liu | Gaussian Mixture Model (GMM)"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="http://localhost:4000/2023/10/28/GMM"/>
+  <meta property="og:title" content="Yuanye Liu | Gaussian Mixture Model (GMM)"/>
+  <meta property="og:description" content="Gaussian Mixture Model (GMM)"/>
+  <meta property="og:image" content="http://localhost:4000/assets/img/profile3.JPG"/>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="http://localhost:4000/2023/10/28/GMM"/>
+  <meta property="twitter:title" content="Yuanye Liu | Gaussian Mixture Model (GMM)"/>
+  <meta property="twitter:description" content="Gaussian Mixture Model (GMM)"/>
+  <meta property="twitter:image" content="http://localhost:4000/assets/img/profile3.JPG"/>
+  
+    <meta property="twitter:creator" content="@HenryLau"/>
+    <meta property="twitter:site" content="@HenryLau"/>
+  
+
+  <!-- Google scholar -->
+  <meta property="scholar:card" content="summary_large_image"/>
+  <meta property="scholar:url" content="http://localhost:4000/2023/10/28/GMM"/>
+  <meta property="scholar:title" content="Yuanye Liu | Gaussian Mixture Model (GMM)"/>
+  <meta property="scholar:description" content="Gaussian Mixture Model (GMM)"/>
+  <meta property="scholar:image" content="http://localhost:4000/assets/img/profile3.JPG"/>
+  
+    <meta property="scholar:creator" content=""/>
+    <meta property="scholar:site" content=""/>
+  
+
+  <link rel="stylesheet" href="http://localhost:4000/assets/css/main.css"/>
+  <link rel="canonical" href="http://localhost:4000/2023/10/28/GMM"/>
+  <link rel="shortcut icon" href="http://localhost:4000/assets/icon.ico" type="image/x-icon"/>
+
+  <!-- Google Analytics -->
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', "", "auto");
+    ga('send', "pageview");
+  </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+
+</head>
+
+
+  <body>
+    <header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="http://localhost:4000/">
+      <img src="http://localhost:4000/assets/img/title.jpeg" alt="Yuanye Liu" />
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon"></a>
+
+      <div class="menu">
+        
+          
+          
+          <a class="page-link" href="http://localhost:4000/">
+            About
+          </a>
+        
+          
+          
+          <a class="page-link" href="http://localhost:4000/experience">
+            Experience
+          </a>
+        
+          
+          
+          <a class="page-link" href="http://localhost:4000/publication">
+            Publication
+          </a>
+        
+          
+          
+          <a class="page-link" href="http://localhost:4000/blog">
+            Blog
+          </a>
+        
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+          <header class="post-header">
+
+            
+
+            <h1 class="post-title">
+            
+              Gaussian Mixture Model (GMM)
+            
+            </h1>
+
+            
+            <p class="post-meta"><span class="post-date">October 28, 2023
+            </span></p>
+          </header>
+
+          <article class="post-content">
+            <h1 id="gmm">GMM</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>It’a a very simple and trivial derivation for GMM.</p>
+
+<h2 id="content">Content</h2>
+<ol>
+  <li>Likelihood <a href="#likelihood">[Link]</a></li>
+  <li>EM derivation <a href="#em-derivation">[Link]</a></li>
+  <li>EM solution for GMM <a href="#em-solution-for-gmm">[Link]</a></li>
+  <li>Image segmentation through GMM <a href="#get-segmentation-from-gmm">[Link]</a></li>
+  <li>Multi-component GMM <a href="#multi-component-gmm">[Link]</a></li>
+</ol>
+
+<h2 id="likelihood">Likelihood</h2>
+<p>The likelihood function in GMM for each observation $x_i$ is,</p>
+
+\[P(x_i\mid \theta)=\sum_{k=1}^{K}\pi_k f_k(x_i;\mu_k,\sigma^2_k)=\sum_{k=1}^{K}\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k)\]
+
+<p>Under the independence of pixel assumption, the likelihhod is,</p>
+
+\[L(\theta)=P(x\mid\theta)=\prod_i P(x_i\mid\theta)=\prod_i\sum_{k=1}^{K}\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k)\]
+
+<p>Then log-likelihood</p>
+
+\[l(\theta) = \log L(\theta)=\sum_i \log(\sum_{k=1}^{K}\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k))\]
+
+<p>we can note here we have a log-summation which is difficult to solve in MLE.</p>
+
+<h3 id="introduce-a-latent-variable-z">Introduce a latent variable $Z$</h3>
+<p>To address the problem above, we introuduce a latent variable $Z$, where $Z_i=k$ implies $i_{th}$ observation belonging to $k_{th}$ class.</p>
+
+\[P(x_i\mid \theta)=\sum_kP(x_i,Z_i=k\mid \theta)=\sum_k P(Z_i=k\mid \theta)P(x_i\mid Z_i=k,\theta)=\sum_k\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k)\]
+
+<h3 id="prior-distribution">Prior distribution</h3>
+<p>We can find that the prior distribution of $Z$ is,</p>
+
+\[P(Z_i=k\mid \theta)=\pi_k\]
+
+<h3 id="posterior-distribution">Posterior distribution</h3>
+<p>And the posterior of $Z$ is,</p>
+
+\[P(Z_i=k\mid x_i,\theta)=\frac{P(Z_i=k\mid\theta)P(x_i\mid z_i=k,\theta)}{\int_l P(Z_i=l\mid\theta)P(x_i\mid z_i=l,\theta)}\]
+
+<p>which is the result we want for segmentation.</p>
+
+<h3 id="joint-distribuiton">Joint distribuiton</h3>
+<p>We compute the joint distribution</p>
+
+\[P(x_i,Z_i\mid \theta)=\prod_{k=1}^K (P(x_i,Z_i=k\mid \theta))^{1(Z_i=k)}=\prod_{k=1}^K (\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k))^{1(Z_i=k)}\]
+
+<h3 id="complete-data-likelihood">Complete data likelihood</h3>
+<p>The complete likelihood (including latent variables) is,</p>
+
+\[\begin{aligned}
+L_{com}(\theta\mid x,Z)
+&amp;=P(x,Z\mid\theta )
+\\
+&amp;=\prod_{i=1}^N P(x_i,Z_i\mid \theta)
+\\
+&amp;=\prod_{i=1}^N \prod_{k=1}^K (P(x_i,Z_i=k\mid \theta))^{1(Z_i=k)}
+\\
+&amp;=\prod_{k=1}^K (\pi_k \Phi_k(x_i;\mu_k,\sigma^2_k))^{1(Z_i=k)}
+\end{aligned}\]
+
+<p>log-likelihood:</p>
+
+\[\begin{aligned}
+l_{com}(\theta\mid x,Z)
+&amp;=\log L(\theta\mid x,Z)
+\\
+&amp;=\sum_{i=1}^N\sum_{k=1}^K {1(Z_i=k)}\{\log\pi_k+ \log \Phi_k(x_i;\mu_k,\sigma^2_k)\}
+\end{aligned}\]
+
+<h2 id="em-derivation">EM derivation</h2>
+<p>Now we derive the EM solution,</p>
+
+<p>The objective is to maximize log-likelihood, we do a decomposition first,</p>
+
+\[\begin{aligned}
+\log P(x\mid\theta)=\log P(x,Z\mid \theta)-\log P(Z\mid x,\theta)
+\end{aligned}\]
+
+<p>Take conditional expectation on both sides w.r.t. $Z\mid x,\theta^{[m]}$</p>
+
+\[\mathbb{E}_{Z\mid x,\theta^{[m]}}\log P(x\mid\theta)=
+\mathbb{E}_{Z\mid x,\theta^{[m]}}\log P(x,Z\mid \theta)-
+\mathbb{E}_{Z\mid x,\theta^{[m]}}\log P(Z\mid x,\theta)\]
+
+<p>We denote as</p>
+
+\[\log P(x\mid\theta):=l(\theta)=Q(\theta\mid\theta^{[m]})-C(\theta\mid \theta^{[m]})\]
+
+<p>The update in $l(\theta)$:</p>
+
+\[l(\theta^{[m+1]})-l(\theta^{[m]})=Q(\theta^{[m+1]}\mid \theta^{[m]})-Q(\theta^{[m]}\mid \theta^{[m]})-\{C(\theta^{[m+1]}\mid \theta^{[m]})-C(\theta^{[m]}\mid \theta^{[m]})\}\]
+
+<p>For $C$:</p>
+
+\[\begin{aligned}
+C(\theta^{[m+1]}\mid \theta^{[m]})-C(\theta^{[m]}\mid \theta^{[m]})
+&amp;=\mathbb{E}\{\log \frac{P(Z\mid x,\theta^{[m+1]})}{P(Z\mid x,\theta^{[m]})}\mid x,\theta ^{[m]}\}
+\\
+&amp;\le \log \mathbb{E}\{ \frac{P(Z\mid x,\theta^{[m+1]})}{P(Z\mid x,\theta^{[m]})}\mid x,\theta ^{[m]}\}
+\\
+&amp;=\log \int_Z \frac{P(Z\mid x,\theta^{[m+1]})}{P(Z\mid x,\theta^{[m]})} P(Z\mid x,\theta^{[m]})\mathrm d Z\\
+&amp;=0
+\end{aligned}\]
+
+<p>So we have,</p>
+
+\[l(\theta^{[m+1]})-l(\theta^{[m]})\ge Q(\theta^{[m+1]}\mid \theta^{[m]})-Q(\theta^{[m]}\mid \theta^{[m]})\]
+
+<p>So $Q$ fucntion is a lower bound of $l$ maximizeing $l(\theta)$ is reduced to,</p>
+
+\[\max_{\theta} Q(\theta\mid \theta^{[m]})=\max_\theta \mathbb{E}\{\log P(x,Z\mid \theta)\mid x,\theta^{[m]}\}\]
+
+<h2 id="em-solution-for-gmm">EM solution for GMM</h2>
+
+<h3 id="e-step-compute-q-function">E-step: compute Q function</h3>
+
+\[\begin{aligned}
+Q(\theta\mid \theta^{[m]})
+&amp;=\mathbb E\{\log P(x,Z\mid \theta)\mid x,\theta^{[m]}\}
+\\
+&amp;=\mathbb E\{\sum_{i=1}^N\sum_{k=1}^K {1(Z_i=k)}(\log\pi_k+ \log \Phi_k(x_i;\mu_k,\sigma^2_k))\mid x,\theta^{[m]}\}
+\\
+&amp;=\sum_{i=1}^N\sum_{k=1}^K \mathbb E\{1(Z_i=k)\mid x,\theta^{[m]}\}(\log\pi_k+ \log \Phi_k(x_i;\mu_k,\sigma^2_k))
+\\
+&amp;=\sum_{i=1}^N\sum_{k=1}^K P\{Z_i=k\mid x,\theta^{[m]}\}(\log\pi_k+ \log \Phi_k(x_i;\mu_k,\sigma^2_k))
+\\
+&amp;=\sum_{i=1}^N\sum_{k=1}^K \gamma_{ik}^{[m+1]}(\log\pi_k+ \log \Phi_k(x_i;\mu_k,\sigma^2_k))
+\end{aligned}\]
+
+<p>We denote the posterior as,</p>
+
+\[\gamma_{ik}^{[m+1]}=P(Z_i=k\mid x_i,\theta^{[m]})=\frac{P(Z_i=k\mid\theta^{[m]})P(x_i\mid z_i=k,\theta^{[m]})}{\int_l P(Z_i=l\mid\theta^{[m]})P(x_i\mid z_i=l,\theta^{[m]})}=\frac{\pi_{k}^{[m]}\Phi(x_i;\mu_k^{[m]},\sigma^{2[m]}_k )}{\int_ l\pi_{l}^{[m]}\Phi(x_i;\mu_l^{[m]},\sigma^{2[m]}_l   )}\]
+
+<h3 id="m-stepmaximize-q-function">M-Step:Maximize Q function</h3>
+
+<p>Simplily letting the derivative equalling to zero, and we have</p>
+
+<p>$\pi_k$:</p>
+
+\[\pi_k^{[m]} = \frac{1}{N}\sum_{i}\gamma_{ik}^{[m]}\]
+
+<p>$\mu_{k}:$</p>
+
+\[\mu_{k}^{[m]}=\frac{\sum_i \gamma_{ik}^{[m]}x_i}{\sum_i \gamma_{ik}^{[m]}}\]
+
+<p>$\sigma_k^{2}$:</p>
+
+\[\sigma^{2[m]}_k = \frac{\sum_i \gamma_{ik}^{[m]}(x_i-\mu_k^{[m]})^2}{\sum_i \gamma_{ik}^{[m]}}\]
+
+<h2 id="a-variational-perspective-of-em">A variational perspective of EM</h2>
+<p>Here I want to introduce a variational perspective of EM.</p>
+
+<p>Similarly, we do a decomposition,</p>
+
+\[\begin{aligned}
+l(\theta)
+=\log P(x\mid\theta)
+&amp;=\log P(x,Z\mid \theta)-\log P(Z\mid x,\theta)
+\\
+&amp;=\log \frac{P(x,Z\mid \theta)}{q(z)}- \log \frac{ P(Z\mid x,\theta)}{q(z)}
+\\
+&amp;=\sum_zq(z)\log \frac{P(x,Z\mid \theta)}{q(z)}-\sum_zq(z)\log \frac{ P(Z\mid x,\theta)}{q(z)}
+\\
+&amp;=L(q,\theta)+KL(q(z)\Vert P(Z\mid x,\theta))
+\end{aligned}\]
+
+<p>We know KL divergence is non-negative, so the $L(q,\theta)$ is a lower bound for $l(\theta)$.</p>
+
+<h3 id="e-step">E-step</h3>
+<p>Given $\theta^{[m]}$ fixed, maximize $L(q,\theta^{[m]})$ w.r.t $q(z)$.</p>
+
+<p>$l(\theta)$ is not related to $q$, so if KL term equals zero, we can have max $L(q,\theta)$. That is to say, $q(z)=P(Z\mid x,\theta^{[m]})$, and meanwhile,</p>
+
+\[l(\theta^{[m]})=L(q,\theta^{[m]})\]
+
+<h3 id="m-step">M-step</h3>
+<p>Given $q(z)=P(Z\mid x,\theta^{[m]})$ fixed, maximize $L(q(z),\theta)$ w.r.t $\theta$.</p>
+
+\[\begin{aligned}
+L(P(Z\mid x,\theta^{[m]}),\theta)
+&amp;=\sum_z P(Z\mid x, \theta^{[m]}) \log P(x,Z\mid \theta)-\sum_z P(Z\mid x, \theta^{[m]})\log P(Z\mid x, \theta^{[m]})
+\\
+&amp;=Q(\theta \mid \theta^{[m]}) + const
+\end{aligned}\]
+
+<p>Which is the update we have proved above,</p>
+
+\[\theta = \arg\max_{\theta} Q(\theta\mid \theta^{[m]})=\arg\max_\theta \mathbb{E}\{\log P(x,Z\mid \theta)\mid x,\theta^{[m]}\}\]
+
+<h2 id="get-segmentation-from-gmm">Get segmentation from GMM</h2>
+<p>The label is the latent variable value whose posterior is biggest.</p>
+
+\[label=\arg\max_k P(Z_i=k\mid x,\theta)\arg\max_k =\frac{P(Z_i=k\mid\theta)P(x\mid z_i=k,\theta)}{\int_l P(Z_i=l\mid\theta)P(x\mid z_i=l,\theta)}=\arg\max_k P(x,Z_i=k\mid \theta)\]
+
+<h2 id="multi-component-gmm">Multi-component GMM</h2>
+<p>Multi-component GMM is several level of GMM, i.e., the component of GMM is a GMM.</p>
+
+\[\begin{aligned}
+P(I_i(x)\mid\theta)
+&amp;=\sum_{k\in K}\pi_k P(I_i(x)\mid s(x)=k,\theta)
+\\
+&amp;=\sum_{k\in K}\pi_k \sum_{c\in C_k}\tau_{ick}P(I_i(x)\mid z_i(x)=c,s(x)=k)
+\\
+&amp;=\sum_{k\in K}\pi_k \sum_{c\in C_k}\tau_{ick} \Phi(I_i(x); \mu_{ikc},\sigma_{ikc}^2)
+\end{aligned}\]
+
+          </article>
+
+          
+
+      </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+  <div class="wrapper">
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <h4>CONTACT</h4>
+
+        <div class="social-links">
+          
+            <div class="social-link contact-links">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/email.png"
+                alt="email"
+              />
+              <a href="mailto:yuanyeliu7@gmail.com" id="email-link">
+                
+                  yuanyeliu7@gmail.com
+                
+              </a>
+            </div>
+
+          
+        </div>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <h4>FOLLOW</h4>
+
+        <div class="social-links follow-links">
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/twitter.png"
+                alt="twitter"
+              />
+              <a href="http://twitter.com/henrylau7_">
+                
+                  Twitter
+                
+              </a>
+            </div>
+
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/github.png"
+                alt="github"
+              />
+              <a href="http://github.com/henrylau7">
+                
+                  GitHub
+                
+              </a>
+            </div>
+
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/scholar.png"
+                alt="scholar"
+              />
+              <a href="https://scholar.google.com/citations?user=ecURXdoAAAAJ">
+                
+                  scholar
+                
+              </a>
+            </div>
+
+          
+        </div>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <h4>LINK</h4>
+
+        <div class="social-links follow-links">
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/xiahai.png"
+                alt="xiahai"
+              />
+              <a href="https://zmiclab.github.io/zxh/">
+                
+                  Xiahai
+                
+              </a>
+            </div>
+
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/zhiyang.png"
+                alt="zhiyang"
+              />
+              <a href="https://name-less-king.github.io/">
+                
+                  Zhiyang
+                
+              </a>
+            </div>
+
+          
+            <div class="social-link">
+
+              
+              <img
+                src="http://localhost:4000/assets/img/icons/lesi.png"
+                alt="lesi"
+              />
+              <a href="https://truenobility303.github.io/">
+                
+                  Lesi
+                
+              </a>
+            </div>
+
+          
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</footer>
+
+
+  
+
+
+
+
+
+
+    <script type="text/javascript" src="http://localhost:4000/assets/js/vendor/cash-4.1.5.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/site.js"></script>
+
+  </body>
+</html>

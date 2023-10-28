@@ -1,0 +1,442 @@
+I"�C<h1 id="mvmm-derivation">MvMM derivation</h1>
+
+<p>Yuanye Liu 2023.10</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This is a simple but detailed derivation for MvMM <a href="https://ieeexplore.ieee.org/document/8458220">[Link]</a>. The prerequisite is GMM-EM which you can refer to <a href="./2023-10-28-GMM.md">[GMM]</a> The PDF version is in my Github Res, where you can give me a precious star if you think it’s useful for you and I’ll appreciate it :)</p>
+
+<h2 id="contents">Contents</h2>
+<ol>
+  <li>Likelihood function <a href="#likelihood-function">[Link]</a></li>
+  <li>EM Solution<a href="#em-solution">[Link]</a></li>
+  <li>Spatial Constraints. <a href="#spatial-regularization--constraint">[Link]</a></li>
+  <li>Registration in MvMM. <a href="#registration-in-mvmm">[Link]</a></li>
+  <li>HCMMI <a href="#hetero-coverage-multi-modality-images-hcmmi">[Link]</a></li>
+</ol>
+
+<h2 id="notation">Notation</h2>
+<ul>
+  <li>Common space: $\Omega$
+    <ul>
+      <li>$x\in\Omega$: pixel</li>
+      <li>$I(x) / I_i(x)$: intensity</li>
+    </ul>
+  </li>
+  <li>Image / Sequence / Modality:
+    <ul>
+      <li>$i\in N_I$</li>
+      <li>$N_I=3$ in this task: LGE, T2, bSSFP</li>
+    </ul>
+  </li>
+  <li>Type: defined on common space
+    <ul>
+      <li>$k\in K$</li>
+      <li>Latent variable: $s(x)=k$</li>
+      <li>Prior: $\pi_{kx}$ or $\pi_k$</li>
+    </ul>
+  </li>
+  <li>Subtype: defined on a specific image and its type
+    <ul>
+      <li>$c\in C_{ik}$ (NOTE: related to image and type)</li>
+      <li>Latent variable: $z_i(x)=c$ or $c_{ik}$</li>
+      <li>Prior: $\tau_{ikc}$</li>
+      <li>Gaussian parameters: $\mu_{ikc}, \sigma^2_{ikc}$</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="likelihood-function">Likelihood function</h2>
+<p>First we derive the incomplete likelihood function for $\theta={\pi,\tau,\mu,\sigma}$</p>
+
+\[\begin{aligned}
+L(\theta\mid I)&amp;= \prod_{x\in\Omega}\sum_{k\in K}\pi_{kx}\prod_{i\in N_I} \sum_{c\in C_{ik}} \tau_{ikc} \Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\\
+:&amp;=P(I\mid\theta)
+\\
+&amp;=\prod_{x\in\Omega}P(I(x)\mid \theta)
+\\
+&amp;=\prod_{x\in\Omega}\sum_{k\in K}P(I(x)\mid s(x)=k,\theta)P(s(x)=k\mid\theta)
+\\
+&amp;=\prod_{x\in\Omega}\sum_{k\in K}\pi_{kx}\prod_{i\in N_I}P(I_i(x)\mid s(x)=k, \theta)
+\\
+&amp;=\prod_{x\in\Omega}\sum_{k\in K}\pi_{kx}\prod_{i\in N_I} \sum_{c\in C_{ik}}P(z_i(x)=c\mid s(x)=k,\theta)P(I_i(x)\mid z_i(x)=c,\theta)
+\\
+&amp;= \prod_{x\in\Omega}\sum_{k\in K}\pi_{kx}\prod_{i\in N_I} \sum_{c\in C_{ik}} \tau_{ikc} \Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )
+\end{aligned}\]
+
+<h2 id="em-solution">EM solution</h2>
+<p>Recall the EM solution, we need the complete log-likelihood function in E-step, so we now derive the complete likelihood function.</p>
+
+<h3 id="complete-likelihood">Complete likelihood</h3>
+<p>Here we use the trick, introduce the indicator function $1{(s(x)=k)}$ and $1{(z_i(x)=c)}$.</p>
+
+\[\begin{aligned}
+L(\theta\mid I,S,Z)
+:
+&amp;=P(I,S,Z\mid\theta)
+\\
+&amp;=\prod_{x\in\Omega}\prod_{k\in K}\{\pi_{kx}\prod_{i\in N_I} \prod_{c\in C_{ik}} \{ \tau_{ikc} \Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}^{1\{z_i(x)=c\}}\}^{1\{s(x)=k\}}\\
+\end{aligned}\]
+
+<h3 id="complete-log-likelihood">Complete log-likelihood</h3>
+<p>Take log on both sides.</p>
+
+\[\begin{aligned}
+l(\theta\mid I,S,Z)
+
+&amp;=\log L(\theta\mid I,S,Z)
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K}1_{(s(x)=k)}\log\pi_{kx}\sum_{i\in N_I} \sum_{c\in C_{ik}} 1_{(z_i(x)=c)}\{\log\tau_{ikc}+ \log\Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K}1_{(s(x)=k)}\log\pi_{kx} + \sum_{x\in\Omega}\sum_{k\in K}\sum_{i\in N_I} \sum_{c\in C_{ik}}1_{(s(x)=k)}1_{(z_i(x)=c)}\{\log\tau_{ikc}+ \log\Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}
+
+\end{aligned}\]
+
+<h3 id="e-step-q-function">E-step: $Q$ function</h3>
+<p>In E-step, we are going to take conditioanl expectation for complete log-likelihood function we have derived above, with respect to latent varaible given obervation $I(x)$ and current pamameter $\theta^{[m]}$, i.e. $S,Z\mid I(x),\theta^{[m]}$.</p>
+
+<p>So the Q-function is,</p>
+
+\[\begin{aligned}
+Q(\theta\mid \theta^{[m]})
+&amp;=\mathbb{E}_{S,Z|\theta^{[m]}}l(\theta\mid I,S,Z)
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K}\mathbb{E}_{S,Z|\theta^{[m]}}\{1_{(s(x)=k)}\}\log\pi_{kx} 
+\\
+&amp;+ \sum_{x\in\Omega}\sum_{k\in K}\sum_{i\in N_I} \sum_{c\in C_{ik}}\mathbb{E}_{S,Z|\theta^{[m]}}\{1_{(s(x)=k)}1_{(z_i(x)=c)}\}\{\log\tau_{ikc}+ \log\Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}
+\end{aligned}\]
+
+<h3 id="e-step-compute-posterior-function">E-step: Compute posterior function</h3>
+<p>We can find that it is the indicator functions that are related to the expected variable, which are the posterior,</p>
+
+\[\begin{aligned}
+\mathbb{E}_{S,Z\mid I,\theta^{[m]}}\{1_{(s(x)=k)}\}
+&amp;=P(s(x)=k\mid I,\theta^{[m]} )
+\\
+&amp;=\frac{P(I(x)\mid s(x)=k,\theta^{[m]})P(s(x)=k\mid\theta^{[m]})}{\sum_{l\in K}P(I(x)\mid s(x)=l,\theta^{[m]})P(s(x)=l\mid\theta^{[m]})}
+\\
+&amp;=\frac{P(I(x)\mid s(x)=k,\theta^{[m]})\pi_{kx}^{[m]}}{\sum_{l\in K}P(I(x)\mid s(x)=l,\theta^{[m]})\pi_{lx}^{[m]}}
+\\
+&amp;:=P_{kx}^{[m+1]}
+
+\end{aligned}\]
+
+<p>And then</p>
+
+\[\begin{aligned}
+&amp;\mathbb{E}_{S,Z\mid I,\theta^{[m]}}\{1_{(s(x)=k)}1_{(z_i(x)=c)}\}
+\\
+&amp;=P(s(x)=k,z_{i}(x)=c_{ik}\mid I,\theta^{[m]} )
+\\
+&amp;=P(z_i(x)=c_{ik}\mid s(x)=k,I,\theta^{[m]})P(s(x)=k\mid I,\theta^{[m]})
+\\
+&amp;=P(z_i(x)=c_{ik}\mid s(x)=k,I,\theta^{[m]})P_{kx}^{[m+1]}
+\\
+&amp;=\frac{P(z_i(x)=c_{ik}\mid s(x)=k,\theta^{[m]})P(I(x)\mid z_i(x)=c_{ik},s(x)=k,\theta^{[m]})}{P(I(x)\mid s(x)=k,\theta^{[m]})} P_{kx}^{[m+1]}
+\\
+&amp;=\frac{\tau_{ikc}\Phi(I_i(x)\mid\mu_{ikc}^{[m]},\sigma_{ikc}^{2{[m]}})}{P(I_i(x)\mid s(x)=k,\theta^{[m]})} P_{kx}^{[m+1]}
+\\
+&amp;:=P_{ikcx}^{[m+1]}
+
+\end{aligned}\]
+
+<p>So the $Q$ function is,</p>
+
+\[\begin{aligned}
+Q(\theta\mid \theta^{[m]})
+
+&amp;=\sum_{x\in\Omega}\sum_{k\in K}\mathbb{E}_{S,Z|I,\theta^{[m]}}\{1_{(s(x)=k)}\}\log\pi_{kx} 
+\\
+&amp;+ \sum_{x\in\Omega}\sum_{k\in K}\sum_{i\in N_I} \sum_{c\in C_{ik}}\mathbb{E}_{S,Z|I,\theta^{[m]}}\{1_{(s(x)=k)}1_{(z_i(x)=c)}\}\{\log\tau_{ikc}+ \log\Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K}P_{kx}^{[m+1]}\log\pi_{kx} 
+\\
+&amp;+ \sum_{x\in\Omega}\sum_{k\in K}\sum_{i\in N_I} \sum_{c\in C_{ik}}P_{ikcx}^{[m+1]}\{\log\tau_{ikc}+ \log\Phi(I_i(x);\mu_{ikc},\sigma^2_{ikc} )\}
+\end{aligned}\]
+
+<h3 id="m-step-maximize-the-q-function">M-Step: Maximize the $Q$ function</h3>
+<p>In the M-step, we want to maximize $Q(\theta\mid \theta^{[m]})$, with respect to $\theta=(\pi_{kx},\tau_{ikc},\mu_{ikc},\sigma^2_{ikc})$. We can obtain the closed-form solution by letting the derivative equal to zero.</p>
+
+<h4 id="for-tau">for $\tau$</h4>
+
+\[\tau_{ikc}^{[m+1]}=\arg \max_{\tau_{ikc}}Q(\theta\mid\theta^{[m]})
+\\
+s.t. \sum_{d\in C_{ik}} \tau_{ikd}=1\]
+
+<p>Construct Lagrange multiplier</p>
+
+\[L(\theta,\lambda)=Q(\theta\mid \theta^{[m]})+\lambda(1-\sum_{d\in C_{ik}}\tau_{ikd})
+\\
+\begin{aligned}
+\frac{\partial L}{\partial \tau_{ikc}}
+
+&amp;=\sum_{x\in\Omega}\frac{P_{ikcx}^{[m+1]}}{\tau_{ikc}}+\lambda=0\\
+
+\sum_{d\in C_{ik}}\tau_{ikd}&amp;=1
+
+\end{aligned}\]
+
+<p>Solution:</p>
+
+\[\tau_{ikc}=\frac{\sum_{x\in \Omega}P_{ikcx}^{[m+1]}}{\sum_{d\in C_{ik}}\sum_{x\in \Omega}P_{ikdx}^{[m+1]}}\]
+
+<h4 id="for-pi_kx">For $\pi_{kx}$</h4>
+<p>when no spatial constraint is applied, $\pi_{kx}=\pi_{k}$.</p>
+
+\[\pi_{k}^{[m+1]}=\arg \max_{\pi_{kx}} Q(\theta\mid \theta^{[m]})
+\\
+s.t. \sum_{k\in K}  \pi_{k} =1\]
+
+<p>Solution</p>
+
+\[\pi_{k}^{[m+1]}=\frac{\sum_{x\in \Omega}P_{kx}^{[m+1]}}{\sum_{l\in K}\sum_{x\in\Omega}P_{kx}^{[m+1]}}\]
+
+<h4 id="for-mu_ikc">For $\mu_{ikc}$</h4>
+
+\[\mu_{ikc}^{[m+1]}=\arg\max_{\mu_{ikc}} Q(\theta\mid\theta^{[m]})\]
+
+<p>Solution</p>
+
+\[\frac{\partial Q(\theta\mid\theta^{[m]})}{\partial \mu_{ikc}}=\sum_{x\in\Omega}P_{ikcx}^{[m+1]}(I_i(x)-\mu_{ikc})=0\\
+
+\mu_{ikc}^{[m+1]}=\frac{\sum_{x\in \Omega }P_{ikcx}^{[m+1]}I_i(x)}{\sum_{x\in \Omega}P_{ikcx}^{[m+1]}}\]
+
+<h4 id="for-sigma2m1_ikc">For $\sigma^{2[m+1]}_{ikc}$</h4>
+
+\[\sigma^{2[m+1]}_{ikc}=\arg \max_{\sigma^{2}_{ikc}} Q(\theta\mid\theta^{[m]})\]
+
+\[\frac{\partial Q(\theta\mid\theta^{[m]})}{\partial \sigma^{2}_{ikc}}=\sum_{x\in\Omega}P_{ikcx}^{[m+1]}(-\frac{1}{2}\frac{1}{\sigma^2_{ikc}}+\frac{(I_i(x)-\mu_{ikc}^{[m+1]})^2}{2 (\sigma^{2}_{ikc})^2})=0
+
+\\
+
+\sigma^{2[m+1]}_{ikc}=\frac{\sum_{x\in \Omega }P_{ikcx}^{[m+1]}(I_i(x)-\mu_{ikc}^{[m+1]})^2}{\sum_{x\in \Omega}P_{ikcx}^{[m+1]}}\]
+
+<p>We can note that, here we use the newest $\mu^{[m+1]}$ for the update of $\sigma^{2[m+1]}$</p>
+
+<h2 id="spatial-regularization--constraint">Spatial regularization / constraint</h2>
+<p>The motivation of spatial constrain is, pixels with the same intensity distribution in medical images can come from different structures.</p>
+
+<h3 id="probabilistic-atlas">Probabilistic Atlas</h3>
+<p>Probabilistic atlas is a common used method for spatial constraint <a href="https://www.sciencedirect.com/science/article/pii/S1361841504000271">[Link]</a>.</p>
+
+<p>After the introducing of atlas, the prior now is,</p>
+
+\[\pi_{kx}=P(s(x)=k\mid\theta)=\frac{\pi_kP_A(s(x)=k)}{NF}=\frac{\pi_kP_A(s(x)=k)}{\sum_{l\in K}\pi_l P_A(s(x)=l)}\]
+
+<p>where $NF$ is normalization factor. $NF=\sum_{l\in K}\pi_l P_A(s(x)=l)$.</p>
+
+<p>Similarly, we want to maximize the Q-function, we denote $Q_{\pi}$ referred to the $\pi$ part.</p>
+
+\[\begin{aligned}
+
+Q_{\pi}
+&amp;=\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}\log \pi_{kx}=\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}\log \frac{\pi_kP_A(s(x)=k)}{\sum_{l\in K}\pi_l P_A(s(x)=l)}
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}\log{\pi_k}
+
+-\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}\log \frac{\sum_{l\in K}\pi_l P_A(s(x)=l)}{P_A(s(x)=k)}
+\\
+&amp;=\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}\log{\pi_k}
+
+-\sum_{x\in\Omega}\sum_{k\in K} P_{kx}^{[m+1]}
+\{\log {\sum_{l\in K}\pi_l P_A(s(x)=l)}-\log\sum_{k\in K}{P_A(s(x)=k)}\}
+\end{aligned}\]
+
+<p>Then,</p>
+
+\[\begin{aligned}
+\frac{\partial Q_{\pi}}{\partial \pi_{k}}
+
+&amp;=\sum_{x\in \Omega}\frac{P_{kx}^{[m+1]}}{\pi_k}-\sum_{x\in\Omega}\sum_{j\in K}\frac{P_{jx}^{[m+1]}P_A(s(x)=k)}{\sum_{l\in K}\pi_l P_A(s(x)=l)}
+
+\\
+
+&amp;=\sum_{x\in \Omega}\frac{P_{kx}^{[m+1]}}{\pi_{k}}-\sum_{x\in \Omega }\frac{P_A(s(x)=k)\sum_{j\in K}P_{jx}^{[m+1]}}{\sum_{l\in K}\pi_l P_A(s(x)=l)}
+\\
+&amp;=\sum_{x\in \Omega}\frac{P_{kx}^{[m+1]}}{\pi_{k}}-\sum_{x\in \Omega }\frac{P_A(s(x)=k)}{\sum_{l\in K}\pi_l P_A(s(x)=l)}
+
+=0
+\end{aligned}\]
+
+<p>Since there is no closed-form solution. So we assume on the left hand side, $\pi_k=\pi_{k}^{[m+1]}$, the right hand side, $\pi_l=\pi_l^{[m]}$. And we denote the constant ${C_x^{[m]}=\sum_{l\in K}\pi_l ^{[m]}P_A(s(x)=l)}$. So then we have a iterative ${\pi_k^{[m+1]}}$,</p>
+
+\[\pi_{k}^{[m+1]}=\frac{\sum_{x\in \Omega}P_{kx}^{[m+1]}}{\sum_{x\in\Omega}(P_A(s(x)=k)/C_x^{[m]})}\]
+
+<p>We need to prove that $\pi_k^{[m+1]}$ can increase the likelihood,</p>
+
+\[Q_{\pi}^{[m]}=\sum_x\sum_k P_{kx}^{[m+1]}\log \frac{\pi_k^{[m]}P(A_{kx})}{C_x^{[m]}}
+\\
+Q_{\pi}^{[m+1]}=\sum_x\sum_k P_{kx}^{[m+1]}\log \frac{\pi_k^{[m+1]}P(A_{kx})}{C_x^{[m+1]}}
+\\
+Q_{\pi}^{[m+1]} - Q_{\pi}^{[m]}=\sum_x\sum_k P_{kx}^{[m+1]}\log \frac{\pi_k^{[m+1]}}{\pi_k^{[m]}}\frac{C_x^{[m]}}{C_x^{[m+1]}}\]
+
+<p>We see</p>
+
+\[\begin{aligned}
+
+\frac{\pi_k^{[m+1]}}{\pi_k^{[m]}}\frac{C_x^{[m]}}{C_x^{[m+1]}}
+&amp;=\frac{\sum_{y\in\Omega}P_{ky}^{[m+1]}}{\sum_{y\in\Omega}(P_A(s(y)=k)/C_y^{[m]})}\frac{1}{\pi_k^{[m]}}\frac{C_x^{[m]}}{C_x^{[m+1]}}
+\\
+&amp;=\frac{\sum_{y\in\Omega}P_{ky}^{[m+1]}}
+{
+{\sum_y \pi_k^{[m]}{P_A(s(y)=k)} / {C_y^{[m]}}}
+
+}
+
+\frac{C_x^{[m]}}{C_x^{[m+1]}}
+
+\\
+&amp;=\frac{\sum_{y\in\Omega}P_{ky}^{[m+1]}}
+
+{\sum_y \pi_{ky}^{[m]} }
+\frac{C_x^{[m]}}{C_x^{[m+1]}}
+
+=\frac{\sum_{y\in\Omega}P_{ky}^{[m+1]} / {C_x^{[m+1]}}}
+
+{\sum_y \pi_{ky}^{[m]} /{C_x^{[m]}}}
+\end{aligned}\]
+
+<p>So we have,</p>
+
+\[\begin{aligned}
+Q_{\pi}^{[m+1]} - Q_{\pi}^{[m]}
+
+&amp;=\sum_x\sum_k P_{kx}^{[m+1]}\log \frac{\sum_{y\in\Omega}P_{ky}^{[m+1]} / {C_x^{[m+1]}}}
+
+{\sum_y \pi_{ky}^{[m]} /{C_x^{[m]}}}
+
+\\
+&amp;=  {C_x^{[m+1]}} \sum_k \sum_x P_{kx}^{[m+1]}/ {C_x^{[m+1]}} \log \frac{\sum_{y\in\Omega}P_{ky}^{[m+1]} / {C_x^{[m+1]}}}
+
+{\sum_y \pi_{ky}^{[m]} /{C_x^{[m]}}}
+
+\\
+
+&amp;=  {C_x^{[m+1]}} |\Omega|\sum_k \sum_x P_{kx}^{[m+1]}/ {(C_x^{[m+1]}|\Omega|)} \log \frac{\sum_{y\in\Omega}P_{ky}^{[m+1]} / {(C_x^{[m+1]}|\Omega|)}}
+
+{\sum_y \pi_{ky}^{[m]} /{(C_x^{[m]}|\Omega|)}}
+
+\\
+
+&amp;= {C_x^{[m+1]}} |\Omega|\cdot KL(P\Vert \pi) \ge 0
+
+\end{aligned}\]
+
+<p>So, we proved that $Q_{\pi}$ increases with the update of $\pi_{k}$. It is the GEM (General EM) algorithm.</p>
+
+<h3 id="initialization">Initialization</h3>
+<p>We start from $\theta^{[0]}$, and then compute the posterior $P_{ik}^{[1]}$ and $P_{ickx}^{[1]}$, and then iteratively.</p>
+
+<p>For $\pi_k^{[0]}$:</p>
+
+\[\pi_k^{[0]}=\frac{\sum_{x}P(A_{kx})}{\sum_l\sum_x P(A_{lx})}\]
+
+<p>For $\tau_{ikc}^{[0]}$:</p>
+
+\[\tau_{ikc}^{[0]}=\frac{1}{|C_{ik}|}\]
+
+<p>For $\mu_{ikc}^{[0]},\sigma^{2[0]}_{ikc}$:</p>
+
+\[\mu_{i k c}^{[0]}=\left\{\begin{array}{ll}
+\mu_{i k}^{[0]}+a \sigma_{i k}^{[0]}, &amp; \left|C_{i k} \geq 2\right| \\
+\mu_{i k}^{[0]}, &amp; \left|C_{i k}=1\right|
+\end{array},\left(\sigma_{i k c}^{[0]}\right)^{2}=\frac{\left(\sigma_{i k}^{[0]}\right)^{2}}{\left|C_{i k}\right|}\right.\]
+
+<p>where</p>
+
+\[\mu_{i k}^{[0]}=\frac{\sum_{x} I_{i}(x) p\left(A_{k x}\right)}{\sum_{x} p\left(A_{k x}\right)}, \text { and }\left(\sigma_{i k}^{[0]}\right)^{2}=\frac{\sum_{x}\left(I_{i}(x)-\mu_{i k}^{[0]}\right)^{2} p\left(A_{k x}\right)}{\sum_{x} p\left(A_{k x}\right)}\]
+
+<h2 id="registration-in-mvmm">Registration in MvMM</h2>
+<p>Two types of misalignment in Myocardial Segmentation:</p>
+<ul>
+  <li>Inter-slice: motion shift.</li>
+  <li>Misalignment between atlas and common space.</li>
+</ul>
+
+<p>For the slice reg, we model it as a rigid transformation</p>
+
+\[P(I_i(x)\mid c_{ik},\theta,G_{i,s})=\Phi_{ikc}(I_i(G_{i,s}(x)))\]
+
+<p>where $G_{i,s}$ the transformations for correcting.</p>
+
+<p>The atlas deformation, modeled as a FFD, denoted as $D$,</p>
+
+\[P_A(S(x)=k\mid D)=P_A(s(D(x))=k)=A_k(D(x))\]
+
+<p>So the prior is $\pi_{kx\mid D}=P(s(x)=k\mid D)$.</p>
+
+<p>The likelihood:</p>
+
+\[\begin{aligned}
+L(\theta,D,\{G_{i,s}\})
+&amp;=\prod_{x\in \Omega}\sum_{k\in K} \pi_{kx\mid D}P(I(x)\mid s(x)=k,\theta,\{G_{i,s}\})
+\\
+&amp;=\prod_{x\in \Omega}\sum_{k\in K} \pi_{kx\mid D}\prod_{i\in N_I}P(I_i(x)\mid s(x)=k,\theta,G_{i,s})
+\\
+&amp;=\prod_{x\in \Omega}\sum_{k\in K} \pi_{kx\mid D}\prod_{i\in N_I}\sum_{c_{ik}}\tau_{ikc}\Phi_{ikc}(I_i(G_{i,s}(x)))
+\end{aligned}\]
+
+<p>So the log-likelihood:</p>
+
+\[LL(\theta,D,\{G_{i,s}\})=\log L(\theta,D,\{G_{i,s}\})=\sum_{x\in \Omega}\log\{\sum_{k\in K} \pi_{kx\mid D}\prod_{i\in N_I}\sum_{c_{ik}}\tau_{ikc}\Phi_{ikc}(I_i(G_{i,s}(x)))\}\]
+
+<p>We use ICM (Iterative Conditional Mode) Optimization, optimize some while fixing others.</p>
+
+<p>Here we fix segmentation parameters $\theta$, and optimize the transformation ${G},D$ .</p>
+
+\[\begin{aligned}
+\frac{\partial LL}{\partial G_{i,s}}
+&amp;=\sum_{x\in\Omega}\frac{1}{LH(x)}\sum_{k\in K}\prod_{j\ne i}P(I_j(x)\mid s(x)=k,\theta,G_{j,s})
+\\
+&amp;\cdot\sum_c \tau_{ikc}\frac{\partial \Phi_{ikc}(I_i(G_{i,s}(x)))}{\partial (I_i(G_{i,s}(x)))}
+\cdot
+\frac{\partial (I_i(G_{i,s}(x)))}{\partial G_{i,s}(x)}
+\cdot
+\frac{\partial G_{i,s}(x)}{\partial  G_{i,s}}
+
+\\
+&amp;=\sum_{x\in\Omega}\frac{1}{LH(x)}\sum_{k\in K}\prod_{j\ne i}P(I_j(x)\mid s(x)=k,\theta,G_{j,s})
+\\
+&amp;\cdot\sum_c \tau_{ikc}\Phi_{ikc}'\nabla I_i(G_{i,s}(x)) \nabla G_{i,s}(x)
+
+\end{aligned}\]
+
+<p>For the deformation $D$</p>
+
+\[\begin{aligned}
+\frac{\partial LL}{\partial D}
+&amp; = \sum_{x\in\Omega} \frac{1}{LH(x)}\sum_{k\in K} \frac{\partial \pi_{kx\mid D}}{\partial D}P(I\mid s(x),\theta,\{G_{i,s}\})
+
+\end{aligned}\]
+
+<p>Where $\frac{\partial \pi_{kx\mid D}}{\partial D}=\frac{\partial A_{k}(D(x))}{\partial D}$,</p>
+
+\[\frac{\partial A_{k}(D(x))}{\partial D}=\left.\nabla A_{k}\right|_{y=\left[y_{1}, y_{2}, y_{3}\right]} \times\left[\frac{\partial y_{1}}{\phi_{d}}, \frac{\partial y_{2}}{\phi_{d}}, \frac{\partial y_{3}}{\phi_{d}}\right]^{\mathrm{T}}\]
+
+<p>Where $y=D(x),{\phi_d}$ are parameters of FFD.</p>
+
+<p>So, the update is,</p>
+
+\[\begin{aligned}
+G_{i, s}^{[k+1]} &amp; =G_{i, s}^{[k]}+l_{G} \cdot \frac{\partial L L}{\partial G_{i, s}} \\
+D^{[k+1]} &amp; =D^{[k]}+l_{D} \cdot\left(\frac{\partial L L}{\partial D}+\lambda \cdot \frac{\partial C_{\text {smooth }}}{\partial D}\right)
+\end{aligned}\]
+
+<p>where $\dfrac{\partial C_{\text {smooth }}}{\partial D}$ is a regularization term.</p>
+
+<h2 id="hetero-coverage-multi-modality-images-hcmmi">Hetero-Coverage Multi-Modality Images (HCMMI)</h2>
+
+<p>Introduction of HCMMI: owing to each modality may have different coverage of the subject, so we emplopy multiple MvMMs to address this problem.</p>
+
+<p>First, The whole common space is divided into several spaces:</p>
+
+\[\Omega = \cup_{v=1}^{N_{sr}}\Omega_{v}\]
+
+<p>where $\Omega_v$ expresses the $v_{th}$ non-overlapping region.</p>
+
+<p>So our likelihood is the summation of each region $\Omega_v$,</p>
+
+\[LL_{HC}=\sum_{v=1}^{N_{sr}}LL_{\Omega_v}=\sum_{v=1}^{N_{sr}}\sum_{x\in \Omega_v}\log\sum_{k\in K}\pi_{kx}\prod_{i\in N_v}(\sum_{c\in C_{ik}}\Phi_{ikc}(I_i(x)))\]
+
+<p>The parameter update is simliar above, but $x\in\Omega_v$ instead of $x\in\Omega$ and $\prod_{i\in N_v}$ instead of $\prod_{i\in N_I}$. Specially, if $|\Omega_v|=1$, it’s a GMM. If $|\Omega_v|\ge 2$, it’s MvMM.</p>
+:ET
