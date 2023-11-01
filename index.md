@@ -17,6 +17,7 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## AWARD
+* MICCAl Best Paper and Young Scientist Award finalist [2023]
 * MICCAI STAR award (top 3%), [2023]
 * Excellent Graduate Award of Shanghai (top 5%), [2023]
 * Fudan University Undergraduate Scholarships (top ~30%) [2020,2021,2022,2023]
@@ -24,6 +25,7 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## NEWS
+* [Sept 20, 2023] Our MICCAI paper was selected as candidate for MICCAI Best Paper and Youcn Scientist Award!
 * [Aug 17, 2023] This is the class <a href="https://fdu2023jk4.github.io/">homepage</a> of JK4, where I serve as the counselor.
 * [Aug 17, 2023] Our MICCAI paper was selected as oral presentation! 
 * [May 25, 2023] A paper was accepted by **MICCAI2023** (<font color=red>Early Accepted</font> top 14% in total 2253 submissions).
