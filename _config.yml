@@ -22,6 +22,9 @@ footer:
     - name: Email
       value: yuanyeliu7@gmail.com
       link: mailto:yuanyeliu7@gmail.com
+    - name: Email
+      value: yuanyeliu@fudan.edu.cn
+      link: mailto:yuanyeliu@fudan.edu.cn
 
   follow:
     - name: Twitter
