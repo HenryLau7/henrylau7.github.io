@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-28T18:03:34+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">MvMM: Multi-variate Mixture Model</title><link href="http://localhost:4000/2023/10/29/MvMM-derivation.html" rel="alternate" type="text/html" title="MvMM: Multi-variate Mixture Model" /><published>2023-10-29T18:20:00+08:00</published><updated>2023-10-29T18:20:00+08:00</updated><id>http://localhost:4000/2023/10/29/MvMM-derivation</id><content type="html" xml:base="http://localhost:4000/2023/10/29/MvMM-derivation.html">&lt;h1 id=&quot;mvmm-derivation&quot;&gt;MvMM derivation&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-05-04T16:40:23+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Yuanye Liu</title><entry><title type="html">MvMM: Multi-variate Mixture Model</title><link href="http://localhost:4000/2023/10/29/MvMM-derivation.html" rel="alternate" type="text/html" title="MvMM: Multi-variate Mixture Model" /><published>2023-10-29T18:20:00+08:00</published><updated>2023-10-29T18:20:00+08:00</updated><id>http://localhost:4000/2023/10/29/MvMM-derivation</id><content type="html" xml:base="http://localhost:4000/2023/10/29/MvMM-derivation.html">&lt;h1 id=&quot;mvmm-derivation&quot;&gt;MvMM derivation&lt;/h1&gt;
 
 &lt;p&gt;Yuanye Liu 2023.10&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
-&lt;p&gt;This is a simple but detailed derivation for MvMM &lt;a href=&quot;https://ieeexplore.ieee.org/document/8458220&quot;&gt;[Link]&lt;/a&gt;. The prerequisite is GMM-EM which you can refer to &lt;a href=&quot;./2023-10-28-GMM.md&quot;&gt;[GMM]&lt;/a&gt; The PDF version is in my Github Res, where you can give me a precious star if you think it’s useful for you and I’ll appreciate it :)&lt;/p&gt;
+&lt;p&gt;This is a simple but detailed derivation for MvMM &lt;a href=&quot;https://ieeexplore.ieee.org/document/8458220&quot;&gt;[Link]&lt;/a&gt;. The prerequisite is GMM-EM which you can refer to &lt;a href=&quot;https://henrylau7.github.io/2023/10/28/GMM&quot;&gt;[GMM]&lt;/a&gt;. The PDF version is in my Github &lt;a href=&quot;https://github.com/HenryLau7/Notes/blob/main/2023-10-29-MvMM-derivation.pdf&quot;&gt;Notes Page&lt;/a&gt;, where you can give me a precious star if you think it’s useful for you and I’ll appreciate it :)&lt;/p&gt;
 
 &lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
 &lt;ol&gt;
@@ -441,7 +441,7 @@ D^{[k+1]} &amp;amp; =D^{[k]}+l_{D} \cdot\left(\frac{\partial L L}{\partial D}+\l
 &lt;p&gt;The parameter update is simliar above, but $x\in\Omega_v$ instead of $x\in\Omega$ and $\prod_{i\in N_v}$ instead of $\prod_{i\in N_I}$. Specially, if $|\Omega_v|=1$, it’s a GMM. If $|\Omega_v|\ge 2$, it’s MvMM.&lt;/p&gt;</content><author><name></name></author><summary type="html">MvMM derivation</summary></entry><entry><title type="html">Gaussian Mixture Model (GMM)</title><link href="http://localhost:4000/2023/10/28/GMM.html" rel="alternate" type="text/html" title="Gaussian Mixture Model (GMM)" /><published>2023-10-28T18:20:00+08:00</published><updated>2023-10-28T18:20:00+08:00</updated><id>http://localhost:4000/2023/10/28/GMM</id><content type="html" xml:base="http://localhost:4000/2023/10/28/GMM.html">&lt;h1 id=&quot;gmm&quot;&gt;GMM&lt;/h1&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;It’a a very simple and trivial derivation for GMM.&lt;/p&gt;
+&lt;p&gt;It’a a very simple and trivial derivation for GMM.  The PDF version is in my Github &lt;a href=&quot;https://github.com/HenryLau7/Notes/blob/main/2023-10-28-GMM.pdf&quot;&gt;Notes Page&lt;/a&gt;, where you can give me a precious star if you think it’s useful for you and I’ll appreciate it :)&lt;/p&gt;
 
 &lt;h2 id=&quot;content&quot;&gt;Content&lt;/h2&gt;
 &lt;ol&gt;
@@ -649,7 +649,7 @@ P(I_i(x)\mid\theta)
 &amp;amp;=\sum_{k\in K}\pi_k \sum_{c\in C_k}\tau_{ick} \Phi(I_i(x); \mu_{ikc},\sigma_{ikc}^2)
 \end{aligned}\]</content><author><name></name></author><summary type="html">GMM</summary></entry><entry><title type="html">Student t distribution and Student-t Mixture Model</title><link href="http://localhost:4000/2022/11/07/student-t-distribution.html" rel="alternate" type="text/html" title="Student t distribution and Student-t Mixture Model" /><published>2022-11-07T18:20:00+08:00</published><updated>2022-11-07T18:20:00+08:00</updated><id>http://localhost:4000/2022/11/07/student-t-distribution</id><content type="html" xml:base="http://localhost:4000/2022/11/07/student-t-distribution.html">&lt;h2 id=&quot;introducion&quot;&gt;Introducion&lt;/h2&gt;
 
-&lt;p&gt;Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve.&lt;/p&gt;
+&lt;p&gt;Student-t distribution is a heavy-tailed distribution alternative to normal distribution, which has more patience for the outliers, with more robustness. Not like Gaussian distribution that much sensitve. The PDF version is in my Github &lt;a href=&quot;https://github.com/HenryLau7/Notes/blob/main/2022-11-07-student-t-distribution.pdf&quot;&gt;Notes Page&lt;/a&gt;, where you can give me a precious star if you think it’s useful for you and I’ll appreciate it :)&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/content/StudentT/Student_t.svg&quot; alt=&quot;student-t&quot; class=&quot;post-pic&quot; style=&quot;align:center;&quot; /&gt;&lt;/p&gt;
 
