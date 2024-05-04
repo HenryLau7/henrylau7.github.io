@@ -17,6 +17,14 @@ items:
 
 <!-- Coming soon... -->
 
+## Preprint
+<br>
+ <img src="./assets/img/publication/MERIT.pdf" alt="SciChina" width="400px" height="300px"> <br>
+* <font size=4><b>MERIT: Multi-view Evidential learning for Reliable and Interpretable liver fibrosis sTaging</b></font> 
+ <b>Yuanye Liu*</b>, Zheyao Gao*, Nannan Shi*, Fuping Wu, Yuxin Shi, Qingchao Chen, Xiahai Zhuang <br>
+  <b>Arxiv</b>.<br>
+
+
 ## Conferences
 <br>
  <img src="./assets/img/publication/MICCAI2023.png" alt="SciChina" width="400px" height="300px"> <br>
