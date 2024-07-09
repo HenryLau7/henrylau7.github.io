@@ -11,6 +11,12 @@ slug: /experience
 * *Sept. 2019 - Jun. 2023*, **B.S. in Data Science**
 <br><a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. 
 
+## Internship
+* *July 2024 - Present*, [**Microsoft Research Asia**](https://www.msra.cn/) (Shanghai)
+    + Research Intern.
+    + Supervisor: [Jiahang Xu](https://www.microsoft.com/en-us/research/people/jiahangxu/) and [Li Lyna Zhang](https://www.microsoft.com/en-us/research/people/lzhani/)
+
+
 ## TEACHING ASSISTANT
 * [2023FALL] FUDAN DATA130049, Image Processing and Visualization. (Instructor:<a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>)
 

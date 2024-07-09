@@ -6,7 +6,7 @@ profile_picture:
 ---
 
 <p>
-I'm a M.Sc in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. Now I'm under the supervision of <a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>. I received my bachelor degree in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>.
+I'm a M.Sc in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. Now I'm under the supervision of <a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>. I received my bachelor degree in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. I'm doing my internship in Microsoft Research Asia.
   
 </p>
 <p>  
