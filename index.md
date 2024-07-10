@@ -25,7 +25,7 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## NEWS
+* [July 9, 2024] I start my internship in MSRA.
 * [Sept 20, 2023] Our MICCAI paper was selected as candidate for MICCAI Best Paper and Young Scientist Award!
-* [Aug 17, 2023] This is the class <a href="https://fdu2023jk4.github.io/">homepage</a> of JK4, where I serve as the counselor.
 * [Aug 17, 2023] Our MICCAI paper was selected as oral presentation! 
-* [May 25, 2023] A paper was accepted by **MICCAI2023** (<font color=red>Early Accepted</font> top 14% in total 2253 submissions).
+* [May 25, 2023] A paper was accepted by MICCAI2023 (Early Accept, top 14% in total 2253 submissions).
