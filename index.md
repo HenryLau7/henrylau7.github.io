@@ -29,3 +29,15 @@ My research interests are mainly about machine learning, computer vision and med
 * [Sept 20, 2023] Our MICCAI paper was selected as candidate for MICCAI Best Paper and Young Scientist Award!
 * [Aug 17, 2023] Our MICCAI paper was selected as oral presentation! 
 * [May 25, 2023] A paper was accepted by MICCAI2023 (Early Accept, top 14% in total 2253 submissions).
+
+## SELECTED PUBLICATIONS
+Full publication list can be found in [Google Scholar](https://scholar.google.com/citations?user=ecURXdoAAAAJ&hl=en)
+* **MERIT: Multi-view Evidential Learning for Reliable and Interpretable Liver Fibrosis Staging**  
+  **Yuanye Liu#**, Zheyao Gao#, Nannan Shi#, Fuping Wu, Yuxin Shi, Qingchao Chen, Xiahai Zhuang  
+  *Medical Image Analysis Under review*   
+  [[Arxiv]](https://arxiv.org/abs/2405.02918)
+
+* **A Reliable and Interpretable Framework of Multi-view Learning for Liver Fibrosis Staging**  
+  Zheyao Gao#, **Yuanye Liu#**, Fuping Wu, Nannan Shi, Yuxin Shi, Xiahai Zhuang  
+  *MICCAI 2023* (Oral presentation, nominated for Best Paper and Young Scientist Award)  
+  [[MICCAI]](https://link.springer.com/chapter/10.1007/978-3-031-43904-9_18)

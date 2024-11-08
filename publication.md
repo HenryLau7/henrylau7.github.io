@@ -16,6 +16,7 @@ items:
 ---
 
 <!-- Coming soon... -->
+\* denote equal contribution.
 
 ## Preprint
 <br>
@@ -35,6 +36,20 @@ items:
   [[MICCAI]](https://link.springer.com/chapter/10.1007/978-3-031-43904-9_18)
   <br>
 
+ <img src="./assets/img/publication/yibo-MICCAI2024.png" alt="SciChina" width="500px" height="300px"> <br>
+* <font size=4><b>Evidential Concept Embedding Models: Towards Reliable Concept Explanations for Skin Disease Diagnosis</b></font> 
+ Yibo Gao, Zheyao Gao , Xin Gao , <b>Yuanye Liu</b>, Bomin Wang , and Xiahai Zhuang <br>
+  <b>MICCAI2024</b>.
+  [[MICCAI]](https://link.springer.com/content/pdf/10.1007/978-3-031-72117-5_29)[[Arxiv]](https://arxiv.org/pdf/2406.19130)
+  <br>
+
+ <img src="./assets/img/publication/dengqiang-MICCAI2024.png" alt="SciChina" width="500px" height="300px"> <br>
+* <font size=4><b>Deep Combined Computing of Vascular Images with Tubular Shape-Guided Convolution
+</b></font> 
+Zilong Wang, Xinyang Ge, Xiaorong Chen, Lei Li, Wangbin Ding, <b>Yuanye Liu</b>, Fuping Wu, and Dengqiang Jia <br>
+  <b>MICCAI2024 Workshop</b>.
+  [[MICCAI]](https://link.springer.com/chapter/10.1007/978-3-031-75291-9_4)
+  <br>
 
 <br />
 <br />
