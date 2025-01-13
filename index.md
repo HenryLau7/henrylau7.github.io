@@ -6,7 +6,7 @@ profile_picture:
 ---
 
 <p>
-I'm a M.Sc in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. Now I'm under the supervision of <a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>. I received my bachelor degree in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. I'm doing my internship in Microsoft Research Asia.
+I'm a M.Sc in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. Now I'm under the supervision of <a href="https://zmiclab.github.io/zxh/">Prof.Xiahai Zhuang</a>. I received my bachelor degree in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan University</a>. I completed my internship at Microsoft Research Asia under the supervision of [Jiahang Xu](https://www.microsoft.com/en-us/research/people/jiahangxu/).
   
 </p>
 <p>  
@@ -17,9 +17,10 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## AWARD
+* Microsoft Star of Tomorrow Award (top ~30%) [2024]
 * MICCAl Best Paper and Young Scientist Award finalist [2023]
-* MICCAI STAR award (top ~3%), [2023]
-* Excellent Graduate Award of Shanghai (top 5%), [2023]
+* MICCAI STAR award (top ~3%) [2023]
+* Excellent Graduate Award of Shanghai (top 5%) [2023]
 * Fudan University Undergraduate Scholarships (top ~30%) [2020,2021,2022,2023]
 
 
