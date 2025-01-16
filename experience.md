@@ -14,7 +14,7 @@ slug: /experience
 ## INTERNSHIP
 * *July 2024 - Dec. 2024*, [**Microsoft Research Asia**](https://www.msra.cn/) (Shanghai)
     + Research Intern.
-    + Supervisor: [Jiahang Xu](https://www.microsoft.com/en-us/research/people/jiahangxu/).
+    + Mentor: [Jiahang Xu](https://www.microsoft.com/en-us/research/people/jiahangxu/).
 
 
 ## TEACHING ASSISTANT
