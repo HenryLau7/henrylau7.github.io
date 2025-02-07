@@ -29,7 +29,7 @@ items:
 
 <br>
  <img src="./assets/img/publication/CFPO.png" alt="SciChina" width="500px" height="300px"> <br>
-* <font size=4><b>Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization</b></font> 
+* <font size=4><b>Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization</b></font>  
   <b>Yuanye Liu#</b>, Jiahang Xu#, Li Lyna Zhang, Qi Chen, Xuan Feng, Yang Chen, Zhongxin Guo, Yuqing Yang, Cheng Peng  
   [[Arxiv]](https://arxiv.org/abs/2502.04295)
   <br>

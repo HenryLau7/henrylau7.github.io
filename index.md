@@ -38,7 +38,7 @@ Full publication list can be found in [Google Scholar](https://scholar.google.co
   *Medical Image Analysis Under review* 
   [[Arxiv]](https://arxiv.org/abs/2405.02918)
 
-* **Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization**
+* **Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization**  
   **Yuanye Liu#**, Jiahang Xu#, Li Lyna Zhang, Qi Chen, Xuan Feng, Yang Chen, Zhongxin Guo, Yuqing Yang, Cheng Peng  
   [[Arxiv]](https://arxiv.org/abs/2502.04295)
 
