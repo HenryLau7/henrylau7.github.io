@@ -26,6 +26,7 @@ My research interests are mainly about machine learning, computer vision and med
 
 
 ## NEWS
+* [Feb 11, 2025] One paper was accepted by Medical Image Analysis (IF=10.7).
 * [July 9, 2024] I start my internship in MSRA.
 * [Sept 20, 2023] Our MICCAI paper was selected as candidate for MICCAI Best Paper and Young Scientist Award!
 * [Aug 17, 2023] Our MICCAI paper was selected as oral presentation! 
@@ -35,7 +36,7 @@ My research interests are mainly about machine learning, computer vision and med
 Full publication list can be found in [Google Scholar](https://scholar.google.com/citations?user=ecURXdoAAAAJ&hl=en)
 * **MERIT: Multi-view Evidential Learning for Reliable and Interpretable Liver Fibrosis Staging**  
   **Yuanye Liu#**, Zheyao Gao#, Nannan Shi#, Fuping Wu, Yuxin Shi, Qingchao Chen, Xiahai Zhuang  
-  *Medical Image Analysis Under review* 
+  *Medical Image Analysis* 
   [[Arxiv]](https://arxiv.org/abs/2405.02918)
 
 * **Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization**  
