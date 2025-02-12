@@ -36,7 +36,7 @@ My research interests are mainly about machine learning, computer vision and med
 Full publication list can be found in [Google Scholar](https://scholar.google.com/citations?user=ecURXdoAAAAJ&hl=en)
 * **MERIT: Multi-view Evidential Learning for Reliable and Interpretable Liver Fibrosis Staging**  
   **Yuanye Liu#**, Zheyao Gao#, Nannan Shi#, Fuping Wu, Yuxin Shi, Qingchao Chen, Xiahai Zhuang  
-  *Medical Image Analysis* 
+  *Medical Image Analysis*  
   [[Arxiv]](https://arxiv.org/abs/2405.02918)
 
 * **Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization**  
