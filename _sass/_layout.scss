@@ -148,8 +148,9 @@
 .site-statistics {
   text-align: center;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 13px;
 }
+
 
 @include media-query($on-mobile) {
   .footer-col {
