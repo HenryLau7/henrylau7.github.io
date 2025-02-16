@@ -145,6 +145,12 @@
   color: $grey-color;
 }
 
+.site-statistics {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
 @include media-query($on-mobile) {
   .footer-col {
     float: none;

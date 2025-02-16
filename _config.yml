@@ -17,7 +17,7 @@ header:
     - name: Blog
 
 footer:
-  # show_powered_by: true
+  show_powered_by: false
   contact:
     - name: Email
       value: yuanyeliu7@gmail.com
@@ -34,16 +34,6 @@ footer:
       link: http://github.com/henrylau7
     - name: scholar
       link: https://scholar.google.com/citations?user=ecURXdoAAAAJ
-    # - name: Facebook
-    #   link: http://github.com/henrylau7
-    # - name: Facebook
-    #   link: http://facebook.com/YourFacebookUsername
-    # - name: LinkedIn
-      # link: http://linkedin.com/in/YourLinkedInUsername
-    # - name: Dribbble
-    #   link: https://dribbble.com/YourDribbbleUsername
-    # - name: RSS
-    #   link: /feed.xml
   link:
     - name: Xiahai
       link: https://zmiclab.github.io/zxh/
