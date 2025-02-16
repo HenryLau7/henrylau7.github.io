@@ -17,7 +17,7 @@ header:
     - name: Blog
 
 footer:
-  show_powered_by: false
+  show_powered_by: true
   contact:
     - name: Email
       value: yuanyeliu7@gmail.com
