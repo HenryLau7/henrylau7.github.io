@@ -37,13 +37,13 @@ Full publication list can be found in [Google Scholar](https://scholar.google.co
 * **MERIT: Multi-view Evidential Learning for Reliable and Interpretable Liver Fibrosis Staging**  
   **Yuanye Liu#**, Zheyao Gao#, Nannan Shi#, Fuping Wu, Yuxin Shi, Qingchao Chen, Xiahai Zhuang  
   *Medical Image Analysis*  
-  [[Arxiv]](https://arxiv.org/abs/2405.02918)
+  [[MedIA]](https://www.sciencedirect.com/science/article/pii/S1361841525000556) [[Arxiv]](https://arxiv.org/abs/2405.02918) [[Code]](https://github.com/HenryLau7/MERIT)
 
 * **Beyond Prompt Content: Enhancing LLM Performance via Content-Format Integrated Prompt Optimization**  
   **Yuanye Liu#**, Jiahang Xu#, Li Lyna Zhang, Qi Chen, Xuan Feng, Yang Chen, Zhongxin Guo, Yuqing Yang, Cheng Peng  
-  [[Arxiv]](https://arxiv.org/abs/2502.04295)
+  [[Arxiv]](https://arxiv.org/abs/2502.04295) [[Code]](https://github.com/HenryLau7/CFPO)
 
 * **A Reliable and Interpretable Framework of Multi-view Learning for Liver Fibrosis Staging**  
   Zheyao Gao#, **Yuanye Liu#**, Fuping Wu, Nannan Shi, Yuxin Shi, Xiahai Zhuang  
   *MICCAI 2023* (Oral presentation, nominated for Best Paper and Young Scientist Award)  
-  [[MICCAI]](https://link.springer.com/chapter/10.1007/978-3-031-43904-9_18)
+  [[MICCAI]](https://link.springer.com/chapter/10.1007/978-3-031-43904-9_18) [[Code]](https://github.com/HenryLau7/MERIT)
