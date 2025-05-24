@@ -13,6 +13,13 @@ I'm a M.Sc in <a href="https://sds.fudan.edu.cn/">School of Data Science, Fudan 
 My research interests are mainly about machine learning, computer vision and medical image computing.
 </p>
 
+<p>
+I support 
+<span><img src="./assets/img/icons/chengdu-rongcheng.png" alt="Chengdu Rongcheng" style="height:16px !important; vertical-align:middle; margin: 0 4px;">Chengdu Rongcheng (CSL)</span>, 
+<span><img src="./assets/img/icons/manchester-united.png" alt="Manchester United" style="height:16px !important; vertical-align:middle; margin: 0 4px;">Manchester United (Premier League)</span>, and 
+<span><img src="./assets/img/icons/china-flag.png" alt="China National Team" style="height:16px !important; vertical-align:middle; margin: 0 4px;">the China National Team</span>.
+</p>
+
 **Address**: School of Data Science, Fudan University, 220 Handan Rd., Yangpu Dist., Shanghai, China, 200000.
 
 
